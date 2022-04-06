@@ -14,33 +14,32 @@ void initDeck(Card *head) {
     //     }
     // }
     for (uint8_t i = 1; i <= DECKSIZE; i++){
-        addNewCard(head, i);
+        addNewCard(&head, i);
     }
     printDeck(head);
 }
 
-void addNewCard(Card *head, uint8_t val) {
+void addNewCard(Card **head, uint8_t val) { // WORKING !
     Card *new_card = malloc(sizeof(Card));
     new_card -> data = val;
     new_card -> next = NULL;
-
-    if (head == NULL){ // Deck is empty, adding first card
-        head = new_card;
-        printf("head: %u\n", head -> data);
-    }
-    else { // Deck is not empty, adding card to the end of the Deck.
-        Card *temp = head;
-
+    
+    if (*head == NULL) {
+        *head = new_card;
+        return;        
+    } 
+    else {
+        Card *temp = *head;
+      
         while(temp -> next != NULL) {
-            temp = temp -> next;
+            temp = temp -> next;    
         }
         temp -> next = new_card;
-    } 
+    }
 }
 
-void printDeck(Card *d_head) {
+void printDeck(Card *d_head) {  // WORKING !
     Card *temp = d_head;
-    // printf("head: %u\n", d_head -> data);
     while(temp != NULL){
         printf("%u\n", temp -> data);
         temp = temp -> next;

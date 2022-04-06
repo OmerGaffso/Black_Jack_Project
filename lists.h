@@ -49,7 +49,7 @@ void initDeck(Card *);
      ---------------------
         This function adds the cards to the end of the deck.
  */
-void addNewCard(Card *, uint8_t);
+void addNewCard(Card **, uint8_t);
 
 #endif
 
