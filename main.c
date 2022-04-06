@@ -1,26 +1,7 @@
-#include <stdio.h>
-#include <inttypes.h>
-#include <stdbool.h>
-
-#define DECKSIZE 52
-#define SUITS_NUMBER 4
-#define CARDS_IN_SUIT 13
-
-/* TODO: move the structs to the appropriate file later in project */
- 
-typedef struct{
-    uint8_t data;
-    struct Card* next;
-}Card;
+#include "lists.h"
 
 // Helper Functions 
 void print_bits_u8(uint8_t num);
-void printDeck();
-
-// Deck Operations
-void initDeck();
-void addNewCard(uint8_t);
-
 
 // Phase 1
 void gameInit(); 
@@ -35,14 +16,15 @@ int checkBet();
 static unsigned int cash;
 static unsigned int pot;
 static bool endGameFlag;
-Card *d_head = NULL; // pointer to the start of the deck
-Card *d_tail = NULL; // pointer to the end of the deck
-Card *playerHand = NULL; 
-Card *dealerHand = NULL;
 
 int main(void)
 {
-    gameInit();
+    // gameInit();
+    //TEST
+    Card *d_head = NULL; // pointer to the start of the deck
+    initDeck(d_head);
+
+
     return 0;
 }
 
@@ -57,9 +39,12 @@ void gameInit() {
     cash = 1000;
     pot = 0;
     endGameFlag = false;
+    Card *d_head = NULL; // pointer to the start of the deck
+    Card *playerHand = NULL; 
+    Card *dealerHand = NULL;
 
     welcomMessege();
-    while(!endGameFlag){
+    while(!endGameFlag){ // Game Loop - Ends only when player wants to quit.
         initDeck(d_head);
         printCash();
 
@@ -90,63 +75,6 @@ void printCash(){
     printf("Your cash: %u$\tCurrent bet: %u$\n",cash, pot);
 }
 
-/*   ---------------------
-    | Function: initDeck |
-     ---------------------
-        This function create the cards unique bit sequence.
-        It will create 52 cards, 13 cards for each suit- spades, diamonds, hearts and clubs.
-        Bits 0-1 will indicate the suit of the card-    00 = spades
-                                                        01 = hearts
-                                                        10 = clubs
-                                                        11 = diamonds
-        bits 2-5 will indicate the rank of the card-    0001 = Ace
-                                                        ...
-                                                        ...
-                                                        ...
-                                                        1101 = King
-        bits 6-7 will indicate nothing about the card.
-        for example: 01110101 = King of hearts.
-        At the end of the function, we will have a full deck.  
- */
-void initDeck() {
-    uint8_t value = 0x00;
-    uint8_t mask = 0x00;
-    size_t n = 2;
-
-    for (size_t i = 0; i < DECKSIZE; i++){ 
-        
-        for (size_t j = 0; j < CARDS_IN_SUIT; j++) {
-            mask |= 1 << (n + j);
-            value |= mask;
-            addNewCard(value);
-        }
-    }
-}
-
-/*   ---------------------
-    | Function: addNewCard |
-     ---------------------
-        This function adds the cards to the end of the deck.
- */
-void addNewCard(uint8_t val) {
-    Card *card = malloc(sizeof(Card));
-    card -> data = val;
-    card -> next = NULL;
-
-    if (d_head == NULL){ // Deck is empty, adding first card
-        d_head == card;
-        d_tail == card;
-    }
-    else { // Deck is not empty, adding card to the end of the Deck.
-        Card *temp = d_head;
-
-        while(temp -> next != NULL) {
-            temp = temp -> next;
-        }
-        temp -> next = card;
-        d_tail = card;
-    } 
-}
 
 /*   ---------------------
     | Function: print_bits_u8 |
@@ -167,13 +95,6 @@ void print_bits_u8(uint8_t num) {
         }
     }
     puts("");
-}
-
-void printDeck() {
-    Card *temp = d_head;
-    while(temp != NULL){
-        printf("%u\n", temp -> data);
-    }
 }
 
 /*   --------------------
