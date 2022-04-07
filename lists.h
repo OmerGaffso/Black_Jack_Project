@@ -1,26 +1,12 @@
 #ifndef LISTS_H
 #define LISTS_H
-/********************************************
-*                                           *
+/*******************************************
+*              Includes:                    *
  *******************************************/
-#include <stdio.h>
-#include <inttypes.h>
-#include <stdbool.h>
-#include <stdlib.h>
-/********************************************
-*                                           *
- *******************************************/
-#define DECKSIZE 52
-#define SUITS_NUMBER 4
-#define CARDS_IN_SUIT 13
+#include "data.h"
 
-typedef struct Card{
-    uint8_t data;
-    struct Card* next;
-}Card;
-
-/********************************************
-*                                           *
+/*******************************************
+*              Prototypes:                  *
  *******************************************/
 void printDeck(Card *);
 

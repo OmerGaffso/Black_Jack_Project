@@ -1,7 +1,5 @@
+#include "data.h"
 #include "lists.h"
-
-// Helper Functions 
-void print_bits_u8(uint8_t num);
 
 // Phase 1
 void gameInit(); 
@@ -19,10 +17,10 @@ static bool endGameFlag;
 
 int main(void)
 {
-    // gameInit();
+    gameInit();
     //TEST
-    Card *d_head = NULL; // pointer to the start of the deck
-    initDeck(d_head);
+    // Card *d_head = NULL; // pointer to the start of the deck
+    // initDeck(d_head);
 
 
     return 0;
@@ -66,6 +64,8 @@ void welcomMessege(){
     putchar('\n'); 
 }
 
+
+// MOVE TO DATA.H
 /*   ---------------------
     | Function: printCash |
      ---------------------
@@ -81,21 +81,21 @@ void printCash(){
      ---------------------
         Helper function. receives uint8_t number and prints it's bits.
  */
-void print_bits_u8(uint8_t num) {
-    int x = 0;
+// void print_bits_u8(uint8_t num) {
+//     int x = 0;
 
-    for (uint8_t mask = 1<<7; mask != 0; mask >>= 1) {
-        putchar( (num & mask)  ? '1' : '0');
-        if (x == 7) {
-            putchar(' ');
-            x = 0;
-        }
-        else {
-            x++;
-        }
-    }
-    puts("");
-}
+//     for (uint8_t mask = 1<<7; mask != 0; mask >>= 1) {
+//         putchar( (num & mask)  ? '1' : '0');
+//         if (x == 7) {
+//             putchar(' ');
+//             x = 0;
+//         }
+//         else {
+//             x++;
+//         }
+//     }
+//     puts("");
+// }
 
 /*   --------------------
     | Function: betPhase |

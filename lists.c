@@ -1,22 +1,14 @@
 #include "lists.h"
 
 void initDeck(Card *head) {
-    // uint8_t value = 0x00;
-    // uint8_t mask = 0x00;
-    // size_t n = 2;
+    uint8_t value = 0x04;
 
-    // for (size_t i = 0; i < DECKSIZE; i++){ 
-        
-    //     for (size_t j = 0; j < CARDS_IN_SUIT; j++) {
-    //         mask |= 1 << (n + j);
-    //         value |= mask;
-    //         addNewCard(head,tail, value);
-    //     }
-    // }
-    for (uint8_t i = 1; i <= DECKSIZE; i++){
-        addNewCard(&head, i);
+    for (size_t i = 1; i <= DECKSIZE; i++){
+        addNewCard(&head, value);
+        value++;
     }
-    printDeck(head);
+    // printDeck(head); // SEEING INSIDE THE LIST, MAKING SURE IT WORKS.
+    
 }
 
 void addNewCard(Card **head, uint8_t val) { // WORKING !
@@ -40,8 +32,10 @@ void addNewCard(Card **head, uint8_t val) { // WORKING !
 
 void printDeck(Card *d_head) {  // WORKING !
     Card *temp = d_head;
+    int count = 1;
     while(temp != NULL){
-        printf("%u\n", temp -> data);
+        printf("%2d = ", count++);
+        print_bits_u8(temp -> data);
         temp = temp -> next;
     }
 }
