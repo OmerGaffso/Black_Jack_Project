@@ -24,7 +24,26 @@ typedef struct Card{
 *              Prototypes:                  *
  *******************************************/
 // These are helper functions, used mainly for general purposes or testing.
-void print_bits_u8(uint8_t num);
 
+/*   ---------------------
+    | Function: printBits |
+     ---------------------
+        This function receives a number of type uint8_t, and prints the bit sequence of the value. 
+ */
+void printBits(uint8_t num);
+
+/*   -------------------------
+    | Function: welcomMessege |
+     -------------------------
+        This function introduce the game to the player. 
+ */
+void welcomMessege();
+
+/*   ---------------------
+    | Function: printCash |
+     ---------------------
+        Helper function to make printing cash and bet easier.
+ */
+void printCash(unsigned int *, unsigned int *);
 
 #endif 

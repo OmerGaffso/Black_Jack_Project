@@ -1,5 +1,7 @@
 #include "lists.h"
 
+// MAYBE CHANGE THE FILE NAME TO DECK INSTEAD OF LISTS, OR ADD THE RELEVANT FUNCTIONS TO PHASE 1 FILE AND THE OTHERS TO DECK FILE.
+
 void initDeck(Card *head) {
     uint8_t value = 0x04;
 
@@ -7,7 +9,7 @@ void initDeck(Card *head) {
         addNewCard(&head, value);
         value++;
     }
-    // printDeck(head); // SEEING INSIDE THE LIST, MAKING SURE IT WORKS.
+    // printDeck(head); // SEEING INSIDE THE LIST, MAKING SURE IT WORKS. DELETE BEFORE SUBMITTING.
     
 }
 
@@ -35,7 +37,17 @@ void printDeck(Card *d_head) {  // WORKING !
     int count = 1;
     while(temp != NULL){
         printf("%2d = ", count++);
-        print_bits_u8(temp -> data);
+        printBits(temp -> data);
         temp = temp -> next;
+    }
+}
+
+void freeDeck(Card *d_head) {
+    Card *temp;
+
+    while(d_head != NULL){
+        temp = d_head;
+        d_head = d_head ->next;
+        free(temp);
     }
 }

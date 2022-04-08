@@ -8,6 +8,11 @@
 /*******************************************
 *              Prototypes:                  *
  *******************************************/
+/*   ---------------------
+    | Function: printDeck |
+     ---------------------
+        Helper function that prints the deck content.
+ */
 void printDeck(Card *);
 
 /*   ---------------------
@@ -37,6 +42,12 @@ void initDeck(Card *);
  */
 void addNewCard(Card **, uint8_t);
 
+/*   ---------------------
+    | Function: freeDeck  |
+     ---------------------
+        This function frees the memory used in the Deck linked list.
+ */
+void freeDeck(Card *);
 #endif
 
 
