@@ -35,6 +35,7 @@ void printDeck(Card *);
  */
 void initDeck(Card *);
 
+
 /*   ---------------------
     | Function: addNewCard |
      ---------------------

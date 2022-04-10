@@ -6,6 +6,7 @@
  *******************************************/
 #include "data.h"
 #include "lists.h"
+#include <time.h>
 
 /*******************************************
 *              Prototypes:                  *
@@ -26,6 +27,17 @@ void drawPhase(Card*, Card*, Card*);
         It draws the Card that is positioned in the number place, and adds it to the hand of the player/dealer.
  */
 void drawRandomCard(Card*, Card*);
+
+/*   ---------------------
+    | Function: printHand |
+     ---------------------
+        This function prints a hand.
+        Prints the hand in the format:  player: <rank> of <suit>,\t <rank> of <suit>
+                                        or
+                                        dealer: <rank> of <suit>,\t ???? ????
+        It receives as parameters the hand head pointer and an integer to indicatae if it is a player hand or dealer hand.
+ */
+void printHand(Card*, int);
 
 /*   ------------------
     | Function: random |
