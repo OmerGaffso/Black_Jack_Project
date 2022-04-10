@@ -51,3 +51,27 @@ void freeDeck(Card *d_head) {
         free(temp);
     }
 }
+
+Card *removeCard(Card **list, int pos) {
+    Card *temp, *current;
+    current = list;
+    if (pos == 1) {
+        list = current -> next ;
+        current -> next = NULL;
+        return current;
+    }
+    else if (pos == DECKSIZE) {
+        for (size_t i = 1; i < DECKSIZE - 1; i++)
+            current = current -> next;
+        temp = current -> next; // set temp to last card
+        current -> next = NULL; // set the 1 card before old last as the last card.
+        return temp;
+    }
+    else {
+        for (size_t i = 1; i != pos - 1; i++)
+            current = current -> next;
+        temp = current -> next;
+        current -> next = temp -> next;
+        return temp;
+    }
+}

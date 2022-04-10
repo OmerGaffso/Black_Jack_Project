@@ -35,6 +35,13 @@ void printDeck(Card *);
  */
 void initDeck(Card *);
 
+/*   ---------------------
+    | Function: removeCard |
+     ---------------------
+        This function removes a card from position, and returns the card.
+        Receives as parameters Card list to remove the card from, and an int that indicates the position of the card to remove.
+ */
+Card *removeCard(Card **, int);
 
 /*   ---------------------
     | Function: addNewCard |
