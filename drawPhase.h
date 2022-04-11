@@ -35,9 +35,9 @@ void drawRandomCard(Card*, Card*);
         Prints the hand in the format:  player: <rank> of <suit>,\t <rank> of <suit>
                                         or
                                         dealer: <rank> of <suit>,\t ???? ????
-        It receives as parameters the hand head pointer and an integer to indicatae if it is a player hand or dealer hand.
+        It receives as parameters the hand head pointer and a char - p for player and d for dealer.
  */
-void printHand(Card*, int);
+void printHand(Card*, char);
 
 /*   ------------------
     | Function: random |

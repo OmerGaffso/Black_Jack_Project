@@ -9,11 +9,11 @@
 *              Prototypes:                  *
  *******************************************/
 /*   ---------------------
-    | Function: printDeck |
+    | Function: printList |
      ---------------------
         Helper function that prints the deck content.
  */
-void printDeck(Card *);
+void printList(Card *);
 
 /*   ---------------------
     | Function: initDeck |
@@ -44,11 +44,11 @@ void initDeck(Card *);
 Card *removeCard(Card **, int);
 
 /*   ---------------------
-    | Function: addNewCard |
+    | Function: createCard |
      ---------------------
-        This function adds the cards to the end of the deck.
+        This function create the cards and add them to the end of the deck.
  */
-void addNewCard(Card **, uint8_t);
+void createCard(Card **, uint8_t);
 
 /*   ---------------------
     | Function: freeDeck  |
@@ -56,6 +56,14 @@ void addNewCard(Card **, uint8_t);
         This function frees the memory used in the Deck linked list.
  */
 void freeDeck(Card *);
+
+/*   ---------------------
+    | Function: addCard  |
+     ---------------------
+        This function receives adds a Card to a Card list.
+        Receives Card list and a Card as parameters.
+ */
+void addCard(Card*, Card*);
 #endif
 
 

@@ -3,46 +3,35 @@
 void drawPhase(Card *deckP, Card*playerP, Card*dealerP) {
     for (size_t i  = 1; i < HAND_INIT_SIZE; i++)
         drawRandomCard(deckP, playerP);
+    
+    // TEST ON DRAW FUNCTION
+    printf("Player hand is:\n"); 
+    printList(playerP);
 
     for (size_t i = 1; i < HAND_INIT_SIZE; i++)
-        drawRandomCard(deckP, dealerP);
+        drawRandomCard(deckP, dealerP); // 
 
+    // TEST ON DRAW FUNCTION
+    printf("Dealer hand is:\n"); 
+    printList(dealerP);
+
+    printHand(playerP, 'p');
+    printHand(dealerP, 'd');
     
 }
 
 void drawRandomCard(Card *deckP, Card *handP) {
-    Card* temp = deckP;
+    Card* drawnCard;
     int n = random(); // the random number generated.
     if (deckP == NULL) 
         printf("ERROR: the deck is empty.");
 
-    Card* newCard;
-    newCard = malloc(sizeof(Card));    
-    if(handP == NULL) {
-        if (n == 1) {
-            newCard -> data = deckP -> data;  
-            deckP = deckP -> next;
-            free(temp);
-        } 
-        else if(n == DECKSIZE) {
-            for( size_t i = 1; i != DECKSIZE - 1; i++) // run until 1 card before the end of the deck.
-                temp = temp -> next; 
-            newCard = temp -> next; // set newCard to the last card
-            temp -> next = NULL; // set the 1 card before old last as the last card.
-        }
-        else {
-            for( size_t i = 1; i < n; i++) // go's to one card before the nth card
-                temp = temp -> next;
-            newCard = temp -> next; // set newCard as the nth card.
-            temp -> next = newCard -> next; // "deletes" the nth card from the deck after moving it to the hand.
-        }
-        newCard -> next = NULL;
-    }
-    
+    drawnCard = removeCard(deckP, n);
+    addCard(handP, drawnCard);
 }
 
-void printHand(Card* handP, int handCode){
-
+void printHand(Card* handP, char handCode){
+    
 }
 
 int random() {

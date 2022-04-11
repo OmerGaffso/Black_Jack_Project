@@ -6,14 +6,14 @@ void initDeck(Card *head) {
     uint8_t value = 0x04;
 
     for (size_t i = 1; i <= DECKSIZE; i++){
-        addNewCard(&head, value);
+        createCard(&head, value);
         value++;
     }
-    // printDeck(head); // SEEING INSIDE THE LIST, MAKING SURE IT WORKS. DELETE BEFORE SUBMITTING.
+    // printList(head); // SEEING INSIDE THE LIST, MAKING SURE IT WORKS. DELETE BEFORE SUBMITTING.
     
 }
 
-void addNewCard(Card **head, uint8_t val) { // WORKING !
+void createCard(Card **head, uint8_t val) { // WORKING !
     Card *new_card = malloc(sizeof(Card));
     new_card -> data = val;
     new_card -> next = NULL;
@@ -32,9 +32,13 @@ void addNewCard(Card **head, uint8_t val) { // WORKING !
     }
 }
 
-void printDeck(Card *d_head) {  // WORKING !
+void printList(Card *d_head) {  // WORKING !
     Card *temp = d_head;
     int count = 1;
+    if (d_head == NULL) {
+        printf("The list is empty.\n");
+        return;
+    }
     while(temp != NULL){
         printf("%2d = ", count++);
         printBits(temp -> data);
@@ -72,6 +76,19 @@ Card *removeCard(Card **list, int pos) {
             current = current -> next;
         temp = current -> next;
         current -> next = temp -> next;
+        temp -> next = NULL;
         return temp;
     }
+}
+
+void addCard(Card *hand, Card *card) {
+    if (hand == NULL)
+        hand = card;
+    else {
+        Card *temp;
+        temp = hand;
+        while(temp != NULL)
+            temp = temp -> next;
+        temp -> next = card;
+    }     
 }
