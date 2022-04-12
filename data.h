@@ -21,6 +21,11 @@ typedef struct Card{
     struct Card* next;
 }Card;
 
+typedef struct List {
+    struct Card *head;
+    size_t len;
+}List;
+
 /*******************************************
 *              Prototypes:                  *
  *******************************************/

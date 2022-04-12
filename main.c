@@ -13,9 +13,14 @@ int main(void)
 {
     gameInit();
     
-    //TEST for card initiation.
-    // Card *d_head = NULL; // pointer to the start of the deck
-    // initDeck(d_head);
+    //TEST for card initiation and deleteion
+    // List d_head; // pointer to the start of the deck
+
+    // initDeck(&d_head);
+    // printList(&d_head);
+    // freeDeck(&d_head);
+    // printList(&d_head);
+
 
     //TEST for extern global variables:
     // unsigned int cash = 1000;
@@ -36,22 +41,24 @@ int main(void)
 void gameInit() {
     unsigned int cash, pot;
     bool endGameFlag;
-    Card *d_head = NULL; // pointer to the start of the deck
-    Card *playerHand = NULL; 
-    Card *dealerHand = NULL;
+    List d_head; // pointer to the start of the deck
+    List playerHand; 
+    initList(&playerHand);
+    List dealerHand;
+    initList(&dealerHand);
 
     cash = 1000;
     pot = 0;
     endGameFlag = false;
 
     welcomMessege();
-    initDeck(d_head);
+    initDeck(&d_head);
     while(!endGameFlag){ // Game Loop - Ends only when player wants to quit.
         // WE ENTER HERE ON FIRST GAME CYCLE OR AFTER RESET DECK FUNCTION.
         
         printCash(&cash, &pot);
         betPhase(&cash, &pot);
-        drawPhase(d_head, playerHand, dealerHand);
+        drawPhase(&d_head, &playerHand, &dealerHand);
 
 
 

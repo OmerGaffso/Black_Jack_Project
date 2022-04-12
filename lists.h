@@ -13,7 +13,7 @@
      ---------------------
         Helper function that prints the deck content.
  */
-void printList(Card *);
+void printList(List *);
 
 /*   ---------------------
     | Function: initDeck |
@@ -33,7 +33,7 @@ void printList(Card *);
         for example: 01110101 = King of hearts.
         At the end of the function, we will have a full deck.  
  */
-void initDeck(Card *);
+void initDeck(List *);
 
 /*   ---------------------
     | Function: removeCard |
@@ -41,29 +41,37 @@ void initDeck(Card *);
         This function removes a card from position, and returns the card.
         Receives as parameters Card list to remove the card from, and an int that indicates the position of the card to remove.
  */
-Card *removeCard(Card **, int);
+Card *removeCard(List *, int);
 
 /*   ---------------------
     | Function: createCard |
      ---------------------
-        This function create the cards and add them to the end of the deck.
+        This function create the cards and add them to the deck.
  */
-void createCard(Card **, uint8_t);
+Card* createCard(uint8_t);
 
 /*   ---------------------
     | Function: freeDeck  |
      ---------------------
-        This function frees the memory used in the Deck linked list.
+        This function frees the memory used in the deck linked list.
  */
-void freeDeck(Card *);
+void freeDeck(List *);
 
 /*   ---------------------
     | Function: addCard  |
      ---------------------
-        This function receives adds a Card to a Card list.
-        Receives Card list and a Card as parameters.
+        This function receives a card and a list, and pushes the card to the end of the given list.
+        Receives List to push a the Card into as parameters.
  */
-void addCard(Card*, Card*);
+void addCard(List*, Card*);
+
+/*   ---------------------
+    | Function: initList  |
+     ---------------------
+        This function initiate a list to null and len 0.
+        Receives a list pointer to initiate the list.
+ */
+void initList(List *list);
 #endif
 
 

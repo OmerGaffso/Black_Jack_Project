@@ -6,7 +6,7 @@
 
 void betPhase(unsigned int *cash, unsigned int *pot) {
     // printCash();
-
+    printf("in betPhase\n"); // DELETE
     int playerBet = 0;
     bool flag = true;
     int betCode;

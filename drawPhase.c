@@ -1,6 +1,7 @@
 #include "drawPhase.h"
 
-void drawPhase(Card *deckP, Card*playerP, Card*dealerP) {
+void drawPhase(List *deckP, List *playerP, List *dealerP) {
+    printf("in drawPhase\n"); // DELETE
     for (size_t i  = 1; i < HAND_INIT_SIZE; i++)
         drawRandomCard(deckP, playerP);
     
@@ -20,9 +21,9 @@ void drawPhase(Card *deckP, Card*playerP, Card*dealerP) {
     
 }
 
-void drawRandomCard(Card *deckP, Card *handP) {
+void drawRandomCard(List *deckP, List *handP) {
     Card* drawnCard;
-    int n = random(); // the random number generated.
+    int n = generateRandom(); // the random number generated.
     if (deckP == NULL) 
         printf("ERROR: the deck is empty.");
 
@@ -30,11 +31,11 @@ void drawRandomCard(Card *deckP, Card *handP) {
     addCard(handP, drawnCard);
 }
 
-void printHand(Card* handP, char handCode){
-    
+void printHand(List* handP, char handCode){
+
 }
 
-int random() {
+int generateRandom() {
     static int deckSize = DECKSIZE;
     int randomNum = 0;
 
