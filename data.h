@@ -15,6 +15,7 @@
 #define SUITS_NUMBER 4
 #define CARDS_IN_SUIT 13
 #define HAND_INIT_SIZE 2
+#define MAX_NAME_LEN 10 
 
 typedef struct Card{
     uint8_t data;
