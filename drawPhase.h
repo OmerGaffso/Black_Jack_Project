@@ -48,6 +48,11 @@ void printHand(List*, char);
  */
 int generateRandom(int);
 
+uint8_t extractSuitBits(uint8_t);
+
+uint8_t extractRankBits(uint8_t);
+
+/* NOT SURE IF RELEVANT */
 /*   -----------------------
     | Function: getCardRank |
      -----------------------

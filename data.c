@@ -28,7 +28,7 @@ void printCash(unsigned int *cash, unsigned int *pot){
     printf("Your cash: %u$\tCurrent bet: %u$\n",*cash, *pot);
 }
 
-const char* getSuitName(enum suits Suit) {
+char* getSuitName(enum suits Suit) {
     switch (Suit) {
     case Diamonds:   return "Diamonds";
     case Clubs:      return "Clubs";
@@ -41,7 +41,7 @@ const char* getSuitName(enum suits Suit) {
     }
 }
 
-const char* getRankName(enum ranks Rank) {
+char* getRankName(enum ranks Rank) {
     switch (Rank) {
     case Ace:    return "Ace";
     case Two:    return "2";

@@ -16,6 +16,10 @@
 #define CARDS_IN_SUIT 13
 #define HAND_INIT_SIZE 2
 #define MAX_NAME_LEN 10 
+#define SUIT_MASK 0x03
+#define RANK_MASK 0x3C
+#define SUIT_BITS 2
+#define RANK_BITS 6         // including bits 6-7 
 
 typedef struct Card{
     uint8_t data;
@@ -62,13 +66,13 @@ void printCash(unsigned int *, unsigned int *);
      -----------------------
         Helper function that receives a suit number and return its name as a string (based on suits enum).
  */
-const char* getSuitName(enum suits);
+char* getSuitName(enum suits);
 
 /*   -----------------------
     | Function: getRankName |
      -----------------------
         Helper function that receives a rank number and return its name as a string (based on ranks enum).
  */
-const char* getRankName(enum ranks);
+char* getRankName(enum ranks);
 
 #endif 
