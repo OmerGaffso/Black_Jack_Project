@@ -27,6 +27,10 @@ typedef struct List {
     size_t len;
 }List;
 
+enum suits{Diamonds, Clubs, Hearts, Spades} Suit;
+
+enum ranks{Ace = 1, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King} Rank;
+
 /*******************************************
 *              Prototypes:                  *
  *******************************************/
@@ -52,5 +56,19 @@ void welcomMessege();
         Helper function to make printing cash and bet easier.
  */
 void printCash(unsigned int *, unsigned int *);
+
+/*   -----------------------
+    | Function: getSuitName |
+     -----------------------
+        Helper function that receives a suit number and return its name as a string (based on suits enum).
+ */
+const char* getSuitName(enum suits);
+
+/*   -----------------------
+    | Function: getRankName |
+     -----------------------
+        Helper function that receives a rank number and return its name as a string (based on ranks enum).
+ */
+const char* getRankName(enum ranks);
 
 #endif 

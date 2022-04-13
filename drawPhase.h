@@ -7,6 +7,7 @@
 #include "data.h"
 #include "lists.h"
 #include <time.h>
+#include <string.h>
 
 /*******************************************
 *              Prototypes:                  *
@@ -47,21 +48,21 @@ void printHand(List*, char);
  */
 int generateRandom(int);
 
-/*   -----------------
-    | Function: ranks |
-     -----------------
+/*   -----------------------
+    | Function: getCardRank |
+     -----------------------
         This function receives a uint8_t, and based on bits 2-5 translate the value into card rank.
         Returns a string with single digit (2-9) if the card value is a digit, or a string containing the rank name (King, Queen, Prince or Ace)  
  */
-char [] ranks(uint8_t);
+char *getCardRank(uint8_t);
 
-/*   -----------------
-    | Function: suits |
-     -----------------
+/*   -----------------------
+    | Function: getCardSuit |
+     -----------------------
         This function receives a uint8_t, and based on bits 0-1 translate the value into card suit.
         returns a string containing the suit of the card (Diamonds, Clubs, Hearts or Spades).
  */
-char [] suits(uint8_t);
+char *getCardSuit(uint8_t);
 
 
 
