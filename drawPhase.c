@@ -16,7 +16,7 @@ void drawPhase(List *deckP, List *playerP, List *dealerP) {
     // printf("Dealer hand is:\n"); 
     // printList(dealerP);
     // printf("before printHand\n");
-    
+
     printHand(playerP, 'p');
     printHand(dealerP, 'd');
     
@@ -106,16 +106,4 @@ int generateRandom(int deckSize) {
     srand(time(NULL));
     randomNum = (rand() % deckSize) + 1; // return a random integer between 1 and 52.
     return randomNum;
-}
-
-uint8_t extractSuitBits(uint8_t cardData) {
-    /* These two lines makes a copy of the card data, and "deletes" the non relevant bits from it to extract the card suit. */
-    cardData <<= RANK_BITS;
-    cardData >>= RANK_BITS;
-    return cardData; 
-}
-
-uint8_t extractRankBits(uint8_t cardData) {
-    cardData >>= SUIT_BITS;
-    return cardData;
 }

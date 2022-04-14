@@ -62,3 +62,16 @@ char* getRankName(enum ranks Rank) {
         return "";
     }
 }
+
+uint8_t extractSuitBits(uint8_t cardData) {
+    /* Moves the card bits 6 places left (to delete the rank bits) and than 6 places right to leave only the suit bits to be translated*/
+    cardData <<= RANK_BITS;
+    cardData >>= RANK_BITS;
+    return cardData; 
+}
+
+uint8_t extractRankBits(uint8_t cardData) {
+    /* Moves the card bits 2 places right to delete the suit bits so the rank bits are on the least segnificant bits (0-3) location to be translated */
+    cardData >>= SUIT_BITS;
+    return cardData;
+}
