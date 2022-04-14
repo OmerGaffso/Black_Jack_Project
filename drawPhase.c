@@ -16,6 +16,7 @@ void drawPhase(List *deckP, List *playerP, List *dealerP) {
     // printf("Dealer hand is:\n"); 
     // printList(dealerP);
     // printf("before printHand\n");
+    
     printHand(playerP, 'p');
     printHand(dealerP, 'd');
     
@@ -42,21 +43,30 @@ void printHand(List* handP, char handCode){
     temp = handP -> head;
     // printf("in printhand, %c\n", handCode);
     if (handCode == 'p') {
-        // printf("in if statement\n"); // TEST
         printf("Player: ");
         while (temp != NULL) {
-            // printf("in while loop\n");
+
+            // printf("The bits before extractSuitBits: ");
+            // printBits(temp -> data);
+
             cardData = extractSuitBits(temp -> data);
+            
+            // printf("The bits after extractSuitBits: ");
+            // printBits(cardData);
+
             cardSuit = getSuitName(cardData);
-            // strcpy(cardSuit, getCardSuit(temp -> data));
             strcat(cardSuit, "\0");
-            // printf("%s\n", cardSuit);
-            // cardRank = getCardRank(temp -> data);
+         
             /* These two lines makes a copy of the card data, and "deletes" the suit bits from the value to extract the card rank */
+            
+            // printf("The bits before extractRankBits: ");
+            // printBits(temp -> data);
+            
             cardData = extractRankBits(temp -> data);
             
-            // strcpy(cardRank, getCardRank(temp -> data));
-            // strcat(cardRank, "\0");
+            // printf("The bits after extractRankBits: ");
+            // printBits(cardData);
+            
             cardRank = getRankName(cardData);
             printf("%s of %s", cardRank, cardSuit);
             if (temp -> next != NULL)
@@ -64,17 +74,27 @@ void printHand(List* handP, char handCode){
             temp = temp -> next;
         }
         puts("");
-        // printf("ended while loop\n");
     }
     else if (handCode == 'd') {
+        // printf("The bits before extractSuitBits: ");
+        // printBits(temp->data);
+
         cardData = extractSuitBits(temp -> data); 
+
+        // printf("The bits after extractSuitBits: ");
+        // printBits(cardData);
+
         cardSuit = getSuitName(cardData);
-        // cardSuit = getCardSuit(temp -> data);
-        // strcpy(&cardSuit, getCardSuit(temp -> data));
+
+        // printf("The bits before extractRankBits: ");
+        // printBits(temp->data);
+
         cardData = extractRankBits(temp -> data);
-        cardSuit = getRankName(cardData);
-        // cardRank = getCardRank(temp -> data);
-        // strcpy(&cardRank, getCardRank(temp -> data));
+
+        // printf("The bits after extractRankBits: ");
+        // printBits(cardData);
+
+        cardRank = getRankName(cardData);
 
         printf("%s of %s,\t???? ????\n", cardRank, cardSuit);
     }
@@ -96,38 +116,6 @@ uint8_t extractSuitBits(uint8_t cardData) {
 }
 
 uint8_t extractRankBits(uint8_t cardData) {
-    cardData >> SUIT_BITS;
+    cardData >>= SUIT_BITS;
     return cardData;
 }
-
-// char *getCardRank(uint8_t val) {
-//     char *rank;
-//     unsigned int mask = 0x3C; // sets mask to bit pattern 00111100
-
-//     // printf("in getCardRank\n");
-
-//     memset(&rank, '\0', MAX_NAME_LEN); // initiate the "rank" string as string of 10 characters where all of them are the char '\0'
-//     mask &= val;
-//     // strcpy(rank, getRankName(mask));
-//     rank = getRankName(mask);
-//     // printf("done getCardRank\n");
-
-//     return rank;
-
-// }
-
-// char *getCardSuit(uint8_t val) {
-//     char suit[MAX_NAME_LEN];
-//     unsigned int mask = 0x03; // sets mask to bit pattern 00000011
-
-//     // printf("in getCardSuit\n");
-
-//     memset(&suit, '\0', MAX_NAME_LEN); // initiate the "suit" string as string of 10 characters where all of them are the char '\0'
-//     mask &= val;
-//     strcat(suit, getSuitName(mask));
-//     strcat(suit, '\0');
-//     // printf("suit is %s\n",suit);
-//     // suit = getSuitName(mask);
-//     // printf("done getCardSuit\n");
-//     return *suit;
-// }

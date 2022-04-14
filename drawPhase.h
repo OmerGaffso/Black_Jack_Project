@@ -48,27 +48,25 @@ void printHand(List*, char);
  */
 int generateRandom(int);
 
+/*   ---------------------------
+    | Function: extractSuitBits |
+     ---------------------------
+        This function recives the card value, return the suit bits (0-1 bits) value. 
+        In this function we use bitwise << and >>, to remove the bits that isn't relevant to the suit, meaning that the bit sequence
+        returned from this function is in the format: 000000XX.
+        We assume (based on the way we initiate the cards) that bits 6-7 will be 0, and bits 0-5 can be anything.
+ */
 uint8_t extractSuitBits(uint8_t);
 
+/*   ---------------------------
+    | Function: extractRankBits |
+     ---------------------------
+        This function recives the card value, return the rank bits (2-5) value. 
+        In this function we use bitwise >>, to remove the bits that isn't relevant to the rank, meaning that the bit sequence
+        we received is 00XXXXXX, and the sequence that will return from this function will be in the format 0000XXXX.
+        We assume (based on the way we initiate the cards) that bits 6-7 will be 0, and bits 0-5 can be anything.
+ */
 uint8_t extractRankBits(uint8_t);
-
-/* NOT SURE IF RELEVANT */
-/*   -----------------------
-    | Function: getCardRank |
-     -----------------------
-        This function receives a uint8_t, and based on bits 2-5 translate the value into card rank.
-        Returns a string with single digit (2-9) if the card value is a digit, or a string containing the rank name (King, Queen, Prince or Ace)  
- */
-char *getCardRank(uint8_t);
-
-/*   -----------------------
-    | Function: getCardSuit |
-     -----------------------
-        This function receives a uint8_t, and based on bits 0-1 translate the value into card suit.
-        returns a string containing the suit of the card (Diamonds, Clubs, Hearts or Spades).
- */
-char *getCardSuit(uint8_t);
-
 
 
 
