@@ -41,7 +41,16 @@ void initDeck(List *);
         This function removes a card from position, and returns the card.
         Receives as parameters Card list to remove the card from, and an int that indicates the position of the card to remove.
  */
-Card *removeCard(List *, int);
+Card*removeCard(List *, int);
+
+/*   ------------------------------
+    | Function: removeCardFromHand |
+     ------------------------------
+        This function removes the first card from the passed List, and returns the card.
+        Receives as parameters Card list to remove the card from.
+        Returns the card that was removed.
+ */
+Card*removeCardFromHand(List *); 
 
 /*   ---------------------
     | Function: createCard |
@@ -60,8 +69,8 @@ void freeDeck(List *);
 /*   ---------------------
     | Function: addCard  |
      ---------------------
-        This function receives a card and a list, and pushes the card to the end of the given list.
-        Receives List to push a the Card into as parameters.
+        This function receives a card and a list, and pushes the card to the start of the given list.
+        Receives List to push to and a Card to push as parameters.
  */
 void addCard(List*, Card*);
 
@@ -72,6 +81,14 @@ void addCard(List*, Card*);
         Receives a list pointer to initiate the list.
  */
 void initList(List *list);
+
+/*   ----------------------
+    | Function: resetDeck  |
+     ----------------------
+        This function initiate a list to null and len 0.
+        Receives a list pointer to initiate the list.
+ */
+void resetDeck(List *, List *, List *);
 #endif
 
 

@@ -8,6 +8,7 @@
 #include <inttypes.h>
 #include <stdbool.h>
 #include <stdlib.h> 
+#include <string.h>
 /*******************************************
 *              Defines:                     *
  *******************************************/
@@ -94,5 +95,7 @@ uint8_t extractSuitBits(uint8_t);
         We assume (based on the way we initiate the cards) that bits 6-7 will be 0, and bits 0-5 can be anything.
  */
 uint8_t extractRankBits(uint8_t);
+
+void printCardsInFormat(List *);
 
 #endif 

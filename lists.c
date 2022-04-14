@@ -91,3 +91,26 @@ void addCard(List *list, Card *card) {
     list -> head = card;
     list -> len++;
 }
+
+void resetDeck(List *deck, List *playerHand, List *dealerHand) {
+    Card *temp;
+
+    while (playerHand -> head != NULL) {
+        temp = removeCardFromHand(playerHand);
+        addCard(deck, temp);
+    }
+
+    while (dealerHand -> head != NULL) {
+        temp = removeCardFromHand(dealerHand);
+        addCard(deck, temp);
+    }
+}
+
+Card*removeCardFromHand(List *list) {
+    Card *current = list -> head;
+    if (current == NULL) return NULL;
+    list -> head = current -> next;
+    current -> next = NULL;
+    list -> len--;
+    return current;
+}
