@@ -116,3 +116,7 @@ void printCardsInFormat(List* handP){
     }
     puts("");
 }
+
+void blackJack() {
+    printf("Black Jack!\n");
+}

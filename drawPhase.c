@@ -36,36 +36,17 @@ void printHand(List* handP, char handCode){
     Card *temp;
     char *cardSuit, *cardRank;
     uint8_t cardData;
-    // cardSuit = "\0"; 
-    // memset(&cardSuit, '\0', MAX_NAME_LEN);
-    // memset(&cardRank, '\0', MAX_NAME_LEN);
-    // cardRank = "\0"; 
     temp = handP -> head;
-    // printf("in printhand, %c\n", handCode);
     if (handCode == 'p') {
         printf("Player: ");
         while (temp != NULL) {
 
-            // printf("The bits before extractSuitBits: ");
-            // printBits(temp -> data);
-
             cardData = extractSuitBits(temp -> data);
             
-            // printf("The bits after extractSuitBits: ");
-            // printBits(cardData);
-
             cardSuit = getSuitName(cardData);
             strcat(cardSuit, "\0");
          
-            /* These two lines makes a copy of the card data, and "deletes" the suit bits from the value to extract the card rank */
-            
-            // printf("The bits before extractRankBits: ");
-            // printBits(temp -> data);
-            
             cardData = extractRankBits(temp -> data);
-            
-            // printf("The bits after extractRankBits: ");
-            // printBits(cardData);
             
             cardRank = getRankName(cardData);
             printf("%s of %s", cardRank, cardSuit);
@@ -76,23 +57,11 @@ void printHand(List* handP, char handCode){
         puts("");
     }
     else if (handCode == 'd') {
-        // printf("The bits before extractSuitBits: ");
-        // printBits(temp->data);
-
         cardData = extractSuitBits(temp -> data); 
-
-        // printf("The bits after extractSuitBits: ");
-        // printBits(cardData);
 
         cardSuit = getSuitName(cardData);
 
-        // printf("The bits before extractRankBits: ");
-        // printBits(temp->data);
-
         cardData = extractRankBits(temp -> data);
-
-        // printf("The bits after extractRankBits: ");
-        // printBits(cardData);
 
         cardRank = getRankName(cardData);
 

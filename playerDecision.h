@@ -8,6 +8,12 @@
 #include "lists.h"
 
 /*******************************************
+*              Defines:                    *
+ *******************************************/
+#define ACE_VALUE 11
+#define ROYALTY_VALUE 10
+
+/*******************************************
 *              Prototypes:                  *
  *******************************************/
 /*   -------------------------------
@@ -28,7 +34,22 @@ void playerDecisionPhase(List *);
             2-10 will be calculated as face value.
             If the hand contains at least one Ace, it's initial value is 11. However, if the total value of the hand is over 21 (including the Ace value),
             then the value of Ace will be calculated as the value 1 instead.
+        Returns:   
+            The hand value (4-21)
+            0 if the hand value is over 21
  */
 int calculateHandValue(List *);
+
+/*   ---------------------
+    | Function: isRoyalty |
+     ---------------------
+        This function receives a string and checks if the string is royalty name.
+        Parameters:
+            char * - the string to check.
+        Returns:
+            true if the string is royalty (King, Queen, Jack).
+            false if the string isn't royalty.
+ */
+bool isRoyalty(char *);
 
 #endif

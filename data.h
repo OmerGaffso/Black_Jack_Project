@@ -12,15 +12,16 @@
 /*******************************************
 *              Defines:                     *
  *******************************************/
-#define DECKSIZE 52
-#define SUITS_NUMBER 4
-#define CARDS_IN_SUIT 13
-#define HAND_INIT_SIZE 2
-#define MAX_NAME_LEN 10 
-#define SUIT_MASK 0x03
-#define RANK_MASK 0x3C
-#define SUIT_BITS 2
-#define RANK_BITS 6         // including bits 6-7 
+#define DECKSIZE 52         // number of cards in the deck
+#define SUITS_NUMBER 4      // number of suits in a deck of cards
+#define CARDS_IN_SUIT 13    // number of cards per suit
+#define HAND_INIT_SIZE 2    // number of card per hand in the beginning of a black jack roun
+#define MAX_NAME_LEN 10     // maximum size of rank/suit length (used for initiating strings throughout the game)
+// #define SUIT_MASK 0x03
+// #define RANK_MASK 0x3C
+#define SUIT_BITS 2         // number of bits that represent the suit in a uint8_t variable
+#define RANK_BITS 6         // number of bits that represent the rank in a uint8_t variable (including bits 6-7) 
+#define BLACK_JACK 21       // value that represents Black Jack
 
 typedef struct Card{
     uint8_t data;
@@ -97,5 +98,7 @@ uint8_t extractSuitBits(uint8_t);
 uint8_t extractRankBits(uint8_t);
 
 void printCardsInFormat(List *);
+
+void blackJack();
 
 #endif 
