@@ -1,9 +1,36 @@
 #include "playerDecision.h"
 
-void playerDecisionPhase(List *hand) {
+int playerDecisionPhase(List *hand, List *deck) {
     int handVal = 0;
+    char decision[MAX_NAME_LEN]; 
+    bool standFlag = false;
 
     handVal = calculateHandValue(hand);
+    if (handVal == BLACK_JACK) {
+        return 1;
+    }
+
+    while (!standFlag) {
+
+        printf("Will you hit or stand? (write your decision and then press enter):\n");
+        scanf("%[^\n]s", decision);
+
+        *decision = toLower(decision);
+        
+        if (strcmp(decision, "hit") == 0) { // draw a new card and calaculate the new hand value.
+            drawRandomCard(deck, hand);
+            handVal = calculateHandValue(hand);
+            if (handVal == BLACK_JACK) // blackjack
+                return BLACK_JACK;
+            else if (handVal == 0) // bust
+                return BUST;
+            else continue; // if the hand value is not blackjack or bust, return to player decision (input)
+        }
+        else if (strcmp(decision, "stand") == 0) {
+            standFlag = true; // breakes the loop and returns the hand vlaue.
+        }
+    }
+    return handVal;
 }
 
 int calculateHandValue(List *hand) {

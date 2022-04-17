@@ -4,19 +4,41 @@
 #include "drawPhase.h"
 #include "playerDecision.h"
 
-// Phase 1
-void gameInit(); 
-char endGame(); // Add a function that returns end game code. -1 is game over, 1 is keep playing, 0 is finsish game.
-
-
-
 int main(void)
 {
-    // gameInit();
+    unsigned int cash, pot, playerBet;
+    bool endGameFlag;
+    List deck; 
+    List playerHand; 
+    List dealerHand;
+    int playerHandValue;
+    cash = 1000;
+    pot = 0;
+    endGameFlag = false;
+    
+    initList(&playerHand);
+    initList(&dealerHand);
 
+    welcomMessege();
+    initDeck(&deck);
+    
+    while(!endGameFlag){ // Game Loop - Ends only when player wants to quit.
+        // WE ENTER HERE ON FIRST GAME CYCLE OR AFTER RESET DECK FUNCTION.
+        
+        printCash(&cash, &pot);
+        betPhase(&cash, &pot);
+        drawPhase(&deck, &playerHand, &dealerHand);
+        playerHandValue = playerDecisionPhase(&playerHand, &deck);
+        if (playerHandValue == BLACK_JACK) {
+            playerBet *= BLACK_JACK_MULTIPLIER;
+
+        }
+
+        
+    }
     
     //TESTS:
-    List d_head; // pointer to the start of the deck
+    // List d_head; // pointer to the start of the deck
     // List playerHand, dealerHand;
     // Card *temp, *test;
 
@@ -71,39 +93,6 @@ int main(void)
     return 0;
 }
 
-// The only function that should be in main file. It is the initiation phase.
-/*   --------------------
-    | Function: gameInit |
-     --------------------
-        This function is phase 1 of the game. 
-        From this function, we call the functions to introduce the game to the user, and initiate everything we need for a solid game of black jack.
-        We will enter the game endless loop in this function, until we get input from user that he wants to end the game.
- */
-void gameInit() {
-    unsigned int cash, pot;
-    bool endGameFlag;
-    List d_head; // pointer to the start of the deck
-    List playerHand; 
-    initList(&playerHand);
-    List dealerHand;
-    initList(&dealerHand);
-
-    cash = 1000;
-    pot = 0;
-    endGameFlag = false;
-
-    welcomMessege();
-    initDeck(&d_head);
-    while(!endGameFlag){ // Game Loop - Ends only when player wants to quit.
-        // WE ENTER HERE ON FIRST GAME CYCLE OR AFTER RESET DECK FUNCTION.
-        
-        printCash(&cash, &pot);
-        betPhase(&cash, &pot);
-        drawPhase(&d_head, &playerHand, &dealerHand);
-        playerDecisionPhase(&playerHand);
 
 
-        
-    }
-}
 

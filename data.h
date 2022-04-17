@@ -9,19 +9,25 @@
 #include <stdbool.h>
 #include <stdlib.h> 
 #include <string.h>
+#include <ctype.h>
+
 /*******************************************
 *              Defines:                     *
  *******************************************/
-#define DECKSIZE 52         // number of cards in the deck
-#define SUITS_NUMBER 4      // number of suits in a deck of cards
-#define CARDS_IN_SUIT 13    // number of cards per suit
-#define HAND_INIT_SIZE 2    // number of card per hand in the beginning of a black jack roun
-#define MAX_NAME_LEN 10     // maximum size of rank/suit length (used for initiating strings throughout the game)
+#define DECKSIZE 52                 // number of cards in the deck
+#define SUITS_NUMBER 4              // number of suits in a deck of cards
+#define CARDS_IN_SUIT 13            // number of cards per suit
+#define HAND_INIT_SIZE 2            // number of card per hand in the beginning of a black jack roun
+#define MAX_NAME_LEN 10             // maximum size of rank/suit length (used for initiating strings throughout the game)
 // #define SUIT_MASK 0x03
 // #define RANK_MASK 0x3C
-#define SUIT_BITS 2         // number of bits that represent the suit in a uint8_t variable
-#define RANK_BITS 6         // number of bits that represent the rank in a uint8_t variable (including bits 6-7) 
-#define BLACK_JACK 21       // value that represents Black Jack
+#define SUIT_BITS 2                 // number of bits that represent the suit in a uint8_t variable
+#define RANK_BITS 6                 // number of bits that represent the rank in a uint8_t variable (including bits 6-7) 
+#define BLACK_JACK 21               // value that represents Black Jack
+#define BUST -1                     // value that represent the situation of player/dealer has hand value larger than 21
+#define BLACK_JACK_MULTIPLIER 2.5   // multiplier of black jack
+#define WIN_BET_MULTIPLIER 2        // multiplier of regular win 
+
 
 typedef struct Card{
     uint8_t data;
@@ -97,8 +103,24 @@ uint8_t extractSuitBits(uint8_t);
  */
 uint8_t extractRankBits(uint8_t);
 
+/*   ------------------------------
+    | Function: printCardsInFormat |
+     ------------------------------
+        Helper function that prints the cards in the list passed as argumernt in the format: <rank> of <suit>
+ */
 void printCardsInFormat(List *);
 
+/*   ---------------------
+    | Function: blackJack |
+     ---------------------
+        Helper function that prints "Black Jack!\n"
+ */
 void blackJack();
 
+/*   -------------------
+    | Function: toLower |
+     -------------------
+        Helper function that receives a string as a parameter and returns the string in lower case.
+ */
+char * toLower(char *);
 #endif 

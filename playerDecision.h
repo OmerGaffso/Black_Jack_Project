@@ -6,6 +6,7 @@
  *******************************************/
 #include "data.h"
 #include "lists.h"
+#include "drawPhase.h"
 
 /*******************************************
 *              Defines:                    *
@@ -22,8 +23,12 @@
         The main function of the 4th game phase. 
         From this function, we will call all other necessary function.
         Receives the player hand to use in other functions.
+        Returns an integer that indicates the outcome:
+            21 - the player has black jack
+            4 < x < 20 - the player stands, and returns it hand value; 
+            -1 - bust
  */
-void playerDecisionPhase(List *);
+int playerDecisionPhase(List *, List *);
 
 /*   ------------------------------
     | Function: calculateHandValue |

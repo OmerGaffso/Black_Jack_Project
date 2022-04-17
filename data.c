@@ -120,3 +120,9 @@ void printCardsInFormat(List* handP){
 void blackJack() {
     printf("Black Jack!\n");
 }
+
+char * toLower(char *s) {
+    for (char *p = s; *p; p++) 
+        *p = tolower(*p);
+    return s;
+}
