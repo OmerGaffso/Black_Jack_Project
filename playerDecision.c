@@ -71,7 +71,6 @@ int calculateHandValue(List *hand) {
     } // end of while loop
 
     if (sum == BLACK_JACK) {
-        blackJack();
         return BLACK_JACK;
     }
     
@@ -81,15 +80,11 @@ int calculateHandValue(List *hand) {
                 sum -= ROYALTY_VALUE;
                 aceCnt--;
                 if (sum == BLACK_JACK) { // for edge cases. for example: the player has Ace Ace 9 - it will be calculated to 31, and if we subtract 10- it is a black jack.
-                    blackJack();
                     return BLACK_JACK;
                 }
             }
         }
-        else {
-            printf("Bust!\n"); // the sum is over 21, and there is no aces at hand. 
-            return 0;
-        }
+        else return 0; // the sum is over 21, and there is no aces at hand. 
     }
 
     return sum; // no special cases or black jack. returns the hand value.

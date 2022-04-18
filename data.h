@@ -27,6 +27,7 @@
 #define BUST -1                     // value that represent the situation of player/dealer has hand value larger than 21
 #define BLACK_JACK_MULTIPLIER 2.5   // multiplier of black jack
 #define WIN_BET_MULTIPLIER 2        // multiplier of regular win 
+#define MIN_BET 10                  // minimum cash to make a bet
 
 
 typedef struct Card{
