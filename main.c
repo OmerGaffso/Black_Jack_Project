@@ -29,11 +29,20 @@ int main(void)
         betPhase(&cash, &pot);
         drawPhase(&deck, &playerHand, &dealerHand);
         playerHandValue = playerDecisionPhase(&playerHand, &deck);
+        
         if (playerHandValue == BLACK_JACK) {
             playerBet *= BLACK_JACK_MULTIPLIER;
-
+            cash += playerBet;
+            playerBet = 0;
+            continue;
         }
-
+        else if (playerHandValue == BUST) {
+            playerBet = 0;
+            continue;
+        }
+        else {
+            
+        }
         
     }
     
