@@ -84,6 +84,7 @@ int calculateHandValue(List *hand) {
                     return BLACK_JACK;
                 }
             }
+            if (sum > BLACK_JACK) return 0; // subtracted aces from sum, and the sum is still greater than 21.
         }
         else return 0; // the sum is over 21, and there is no aces at hand. 
     }
