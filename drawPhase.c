@@ -51,7 +51,7 @@ void printHand(List* handP, char handCode){
             cardRank = getRankName(cardData);
             printf("%s of %s", cardRank, cardSuit);
             if (temp -> next != NULL)
-                printf(",\t");
+                printf(", ");
             temp = temp -> next;
         }
         puts("");
@@ -65,7 +65,7 @@ void printHand(List* handP, char handCode){
 
         cardRank = getRankName(cardData);
 
-        printf("%s of %s,\t???? ????\n", cardRank, cardSuit);
+        printf("Dealer: %s of %s,???? ????\n", cardRank, cardSuit);
     }
 }
 

@@ -15,6 +15,7 @@ void betPhase(unsigned int *cash, unsigned int *pot) {
         
         printf("Place your bet: \n");
         scanf("%d", &playerBet);
+        getchar(); // flush buffered '\n'
         betCode = checkBet(playerBet, cash, pot);
         switch (betCode)
         {
@@ -34,7 +35,7 @@ void betPhase(unsigned int *cash, unsigned int *pot) {
         case 4:
             printf("You cannot bet negative number.\n\n");
             break;
-        // Valid bets: 
+        // Valid bet: 
         case 0:
             flag = false;
             break;

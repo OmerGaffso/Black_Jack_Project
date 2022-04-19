@@ -126,3 +126,19 @@ char * toLower(char *s) {
         *p = tolower(*p);
     return s;
 }
+
+bool userEndGame() {
+    char s[MAX_NAME_LEN];
+
+    while(true) {
+        printf("Do you wish to play again? (yes/no)\n");
+        scanf(" %s", &s[0]);
+        
+        toLower(s);
+        if (strcmp(s, "yes") == 0)
+            return true;
+        else if (strcmp(s, "no") == 0)
+            return false;
+        else printf("Invalid answer.\n");
+    }
+}

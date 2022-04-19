@@ -124,4 +124,15 @@ void blackJack();
         Helper function that receives a string as a parameter and returns the string in lower case.
  */
 char * toLower(char *);
+
+/*   -----------------------
+    | Function: userEndGame |
+     -----------------------
+        This function prompts the player if he/she wants to end the game. The input should be yes to continue playing or no to end the game.
+        (changes the play flag in main based on user input)
+        Retrurns: 
+            true - if the user input was "yes", meaning he wants to continue playing 
+            false - if the user input was "no", meaning he wants to end the game
+ */
+bool userEndGame();
 #endif 

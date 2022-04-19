@@ -8,14 +8,14 @@
 int main(void)
 {
     unsigned int cash, pot, playerBet;
-    bool endGameFlag;
+    bool play;
     List deck; 
     List playerHand; 
     List dealerHand;
     int playerHandValue, dealerPhaseCode;
     cash = 1000;
     pot = 0;
-    endGameFlag = false;
+    play = true;
     
     initList(&playerHand);
     initList(&dealerHand);
@@ -23,12 +23,12 @@ int main(void)
     welcomMessege();
     initDeck(&deck);
     
-    while(!endGameFlag){ // Game Loop - Ends only when player wants to quit.
+    while(play){ // Game Loop - Ends only when player wants to quit.
         // WE ENTER HERE ON FIRST GAME CYCLE OR AFTER RESET DECK FUNCTION.
         
         if (cash < MIN_BET) {
             printf("Out of cash to make a bet.\nGAME OVER!\n");
-            endGameFlag = true;
+            play = false;
         }
 
         printCash(&cash, &pot);
@@ -43,14 +43,14 @@ int main(void)
             playerBet = 0;
             pot = 0;
 
-            continue; // replace with function that prompts the user if he wants to keep playing (yes/no) and changes the loop flag. 
+            play = userEndGame(); // propts the user if wished to continue playing
         }
         else if (playerHandValue == BUST) {
             printf("Bust!\n");
             pot = 0;
             playerBet = 0;
 
-            continue; // replace with function that prompts the user if he wants to keep playing (yes/no) and changes the loop flag. 
+            play = userEndGame(); // propts the user if wished to continue playing
         }
         else {
            dealerPhaseCode = dealerDrawPhase(&dealerHand, &deck, playerHandValue);
@@ -59,8 +59,8 @@ int main(void)
                 printf("Dealer Wins!\n");
                 pot = 0;
                 playerBet = 0;
-                
-                continue; // replace with function that prompts the user if he wants to keep playing (yes/no) and changes the loop flag. 
+
+                play = userEndGame(); // propts the user if wished to continue playing                
            }
            else if (dealerPhaseCode == BUST) {
                 printf("Dealer Bust!\n");
@@ -68,27 +68,27 @@ int main(void)
                 pot = 0;
                 playerBet = 0;
 
-                continue; // replace with function that prompts the user if he wants to keep playing (yes/no) and changes the loop flag. 
+                play = userEndGame(); // propts the user if wished to continue playing
            }
            else if (dealerPhaseCode == 0) {
                 printf("You Win!\n");
                 cash += pot * WIN_BET_MULTIPLIER;
                 pot = 0;
                 playerBet = 0;
-
-                continue; // replace with function that prompts the user if he wants to keep playing (yes/no) and changes the loop flag. 
+             
+                play = userEndGame(); // propts the user if wished to continue playing
            } 
            else {
-               printf("Tie!\n");
-               playerBet = 0;
-
-               continue; // replace with function that prompts the user if he wants to keep playing (yes/no) and changes the loop flag. 
+                printf("Tie!\n");
+                playerBet = 0;
+           
+                play = userEndGame(); // propts the user if wished to continue playing
            }
         }
-        
+
+        resetDeck(&deck, &playerHand, &dealerHand); // reset the deck either if the player want to continue or wishes to end the game.
     }
     
-    resetDeck(&deck, &playerHand, &dealerHand);
     freeDeck(&deck);
 
     //TESTS:

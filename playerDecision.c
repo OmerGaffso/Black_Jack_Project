@@ -2,23 +2,24 @@
 
 int playerDecisionPhase(List *hand, List *deck) {
     int handVal = 0;
-    char decision[MAX_NAME_LEN]; 
+    char decision[MAX_NAME_LEN], ch; 
     bool standFlag = false;
 
     handVal = calculateHandValue(hand);
     if (handVal == BLACK_JACK) {
-        return 1;
+        return BLACK_JACK;
     }
 
     while (!standFlag) {
 
         printf("Will you hit or stand? (write your decision and then press enter):\n");
-        scanf("%[^\n]s", decision);
+        scanf(" %s", decision);
 
-        *decision = toLower(decision);
+        toLower(decision);
         
         if (strcmp(decision, "hit") == 0) { // draw a new card and calaculate the new hand value.
             drawRandomCard(deck, hand);
+            printHand(hand, 'p');
             handVal = calculateHandValue(hand);
             if (handVal == BLACK_JACK) // blackjack
                 return BLACK_JACK;
