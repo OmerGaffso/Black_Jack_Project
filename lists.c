@@ -1,27 +1,24 @@
 #include "lists.h"
 
-// MAYBE CHANGE THE FILE NAME TO DECK INSTEAD OF LISTS, OR ADD THE RELEVANT FUNCTIONS TO PHASE 1 FILE AND THE OTHERS TO DECK FILE.
-
 void initDeck(List *deck) {
     initList(deck);
-    uint8_t value = 0x04;
     Card *newCard;
+    uint8_t value = FIRST_CARD_BITS;
+
 
     for (size_t i = 1; i <= DECKSIZE; i++){
         newCard = createCard(value);
         addCard(deck, newCard);
         value++;
-    }
-    // printList(head); // SEEING INSIDE THE LIST, MAKING SURE IT WORKS. DELETE BEFORE SUBMITTING.
-    
+    }    
 }
 
-void initList(List *list) { // WORKING !
+void initList(List *list) { 
     list -> head = NULL;
     list -> len = 0;
 }
 
-Card *createCard(uint8_t val) { // WORKING !
+Card *createCard(uint8_t val) { 
     Card *new_card = (Card*) malloc(sizeof(Card));
     if (new_card == NULL) {
         printf("malloc failed\n");
@@ -32,7 +29,7 @@ Card *createCard(uint8_t val) { // WORKING !
     return new_card;
 }
 
-void printList(List *list) {  // WORKING !
+void printList(List *list) {  
     if (list -> head == NULL) {
         printf("The list is empty.\n");
         return;
@@ -47,7 +44,7 @@ void printList(List *list) {  // WORKING !
     }
 }
 
-void freeDeck(List *deck) { // WORKING !
+void freeDeck(List *deck) { 
     Card *temp = deck -> head;
 
     while(deck -> head != NULL){

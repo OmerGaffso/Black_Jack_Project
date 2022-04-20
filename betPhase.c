@@ -1,12 +1,6 @@
 #include "betPhase.h"
 
-// Global variables:
-// extern unsigned int *cash;
-// extern unsigned int *pot;
-
 void betPhase(unsigned int *cash, unsigned int *pot) {
-    // printCash();
-    // printf("in betPhase\n"); // DELETE
     int playerBet = 0;
     bool flag = true;
     int betCode;
@@ -46,7 +40,6 @@ void betPhase(unsigned int *cash, unsigned int *pot) {
     }
     *cash -= playerBet;
     *pot += playerBet;
-    // printCash(cash, pot); // TEST TO SEE EVERYTHING WORKS PROPERLY
 }
 
 

@@ -12,7 +12,7 @@ int playerDecisionPhase(List *hand, List *deck) {
 
     while (!standFlag) {
 
-        printf("Will you hit or stand? (write your decision and then press enter):\n");
+        printf("Will you hit or stand? (write hit/stand):\n");
         scanf(" %s", decision);
 
         toLower(decision);
@@ -29,6 +29,9 @@ int playerDecisionPhase(List *hand, List *deck) {
         }
         else if (strcmp(decision, "stand") == 0) {
             standFlag = true; // breakes the loop and returns the hand vlaue.
+        }
+        else {
+            printf("Invalid input.\n");
         }
     }
     return handVal;
