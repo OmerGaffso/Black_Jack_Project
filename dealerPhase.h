@@ -13,7 +13,9 @@
 *              Defines:                  *
  ****************************************/
 
-#define MIN_DEALER_HAND_VAL 17 
+#define MIN_DEALER_HAND_VAL 17
+#define DEALER_WIN 1
+#define DEALER_LOST 0 
 
 /*******************************************
 *              Prototypes:                  *
@@ -22,22 +24,17 @@
 /*   ---------------------------
     | Function: dealerDrawPhase |
      ---------------------------
-        The main function for the dealer player. The dealer follows the following algorithm:
-            Calculate the value of delaers hand. If it's greater than the value of the players hand, the dealer wins.
-            Otherwise, the dealer will draw cards until one of the following occurs:
-                1. The dealer hand value is greater than the players hand value.
-                2. The dealer hand value reached 17 or more.
-                3. The dealer hand value is over 21 - prints dealer bust and adds bet * 2 to player cash.
-                4. The dealer hand value is over 17 and below 21, and is eaqual to the player hand value. In this case, the cards will be reset, but the bet will remain as is.
+        This function runs the dealer algorithm, and determines which player wins.
+        The dealer will draw cards until his hand value is greater or equal to 17, then he stops drawing cards.
         Parameters:
             List * - Dealers hand list
             List * - Deck list
             int - The player hand value
         Returns: integer that indicates the situation:
-            return 1 - indicates situation 1. (dealer won)
-            return 0 - indicates dealer lost (draw up until dealer hand value > 17, but dealer hand value < player hand value).
-            retrun -1 - indicates situation 3. (dealer bust)
-            return handValue - indicates situation 4. (tie)
+            return 1 (DEALER_WIN)- dealer hand value is greater than the player hand value (and lesser or equal to 21)
+            return 0 (DEALER_LOST- dealer hand value is greater or equal to 17 (dealer stop drawing cards), but lesser than the player hand value
+            retrun -1 (BUST)- dealer draw cards and his hand value is greater than 21
+            return handValue - dealer draw till his hand value is greater than 17 and lesser than 21, and his hand value is equal to the player hand value
  */
 int dealerDrawPhase(List *, List *, int);
 

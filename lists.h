@@ -11,7 +11,10 @@
 /*   ---------------------
     | Function: printList |
      ---------------------
-        Helper function that prints the deck content.
+        Used in testing and debugging.
+        Helper function that prints the deck content (prints the bit sequence of the cards in the list).
+        parameters:
+            List * - The list head pointer to be printed.
  */
 void printList(List *);
 
@@ -20,18 +23,20 @@ void printList(List *);
      ---------------------
         This function create the cards unique bit sequence.
         It will create 52 cards, 13 cards for each suit- spades, diamonds, hearts and clubs.
-        Bits 0-1 will indicate the suit of the card-    00 = spades
-                                                        01 = hearts
-                                                        10 = clubs
-                                                        11 = diamonds
+        Bits 0-1 will indicate the suit of the card-    11 = spades
+                                                        10 = hearts
+                                                        01 = clubs
+                                                        00 = diamonds
         bits 2-5 will indicate the rank of the card-    0001 = Ace
                                                         ...
                                                         ...
                                                         ...
                                                         1101 = King
         bits 6-7 will indicate nothing about the card.
-        for example: 01110101 = King of hearts.
-        At the end of the function, we will have a full deck.  
+        for example: 01110101 = King of Clubs.
+        At the end of the function, we will have a full deck.
+        parameters:
+            List * - the list head pointer that will be the deck. the cards that will be created will be added to this list.  
  */
 void initDeck(List *);
 

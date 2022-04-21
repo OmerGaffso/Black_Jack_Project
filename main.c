@@ -23,6 +23,8 @@ int main(void)
     welcomMessege();
     initDeck(&deck);
     
+    printList(&deck);
+    printCardsInFormat(&deck);
     while(play){ // Game Loop - Ends only when player wants to quit.
         // first game cycle or after resetDeck function 
         
@@ -55,7 +57,7 @@ int main(void)
         else {
            dealerPhaseCode = dealerDrawPhase(&dealerHand, &deck, playerHandValue);
 
-            if (dealerPhaseCode == 1) {
+            if (dealerPhaseCode == DEALER_WIN) {
                 printf("Dealer Wins!\n");
                 pot = 0;
                 playerBet = 0;
@@ -70,7 +72,7 @@ int main(void)
 
                 play = userEndGame(); // prompts the user if he/she wishes to continue playing
            }
-           else if (dealerPhaseCode == 0) {
+           else if (dealerPhaseCode == DEALER_LOST) {
                 printf("You Win!\n");
                 cash += pot * WIN_BET_MULTIPLIER;
                 pot = 0;
