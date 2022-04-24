@@ -43,24 +43,34 @@ void initDeck(List *);
 /*   ---------------------
     | Function: removeCard |
      ---------------------
-        This function removes a card from position, and returns the card.
-        Receives as parameters Card list to remove the card from, and an int that indicates the position of the card to remove.
+        This function removes a card from position, and returns the card (used for drawing a card from the deck).
+        Parameters:
+            List * - Pointer to the list the card will be removed from
+            int - The index of the card to remove
+        Returns:
+            Card * - The card that has been removed
  */
 Card*removeCard(List *, int);
 
 /*   ------------------------------
     | Function: removeCardFromHand |
      ------------------------------
-        This function removes the first card from the passed List, and returns the card.
-        Receives as parameters Card list to remove the card from.
-        Returns the card that was removed.
+        This function removes the first card from the passed List, and returns the card (used for reseting the hands).
+        Parameters:
+            List * - Pointer to the list from which to remove the card
+        Returns:
+            Card * - The card that was removed
  */
 Card*removeCardFromHand(List *); 
 
 /*   ---------------------
     | Function: createCard |
      ---------------------
-        This function create the cards and add them to the deck.
+        This function creates a Card node and sets its value.
+        Parameters:
+            uint8_t - The bit pattern for the card value (contains rank and suit).
+        Returns:
+            Card * - The card that was created
  */
 Card* createCard(uint8_t);
 
@@ -75,23 +85,30 @@ void freeDeck(List *);
     | Function: addCard  |
      ---------------------
         This function receives a card and a list, and pushes the card to the start of the given list.
-        Receives List to push to and a Card to push as parameters.
+        Parameters:
+            List * - The list to add the card to
+            Card * - The card to add to the given list
  */
 void addCard(List*, Card*);
 
 /*   ---------------------
     | Function: initList  |
      ---------------------
-        This function initiate a list to null and len 0.
-        Receives a list pointer to initiate the list.
+        This function initiate a list with initial values of head = NULL and Len = 0.
+        Parameters:
+            List * - A list to initiate
  */
 void initList(List *list);
 
 /*   ----------------------
     | Function: resetDeck  |
      ----------------------
-        This function initiate a list to null and len 0.
-        Receives a list pointer to initiate the list.
+        This function returns all of the drawn cards to the deck. 
+        Used at the end of the game loop in preparation to initiate a new game or for freeing the malloced cards.
+        Parameters:
+            List * - The deck
+            List * - The player hand
+            List * - The dealer hand
  */
 void resetDeck(List *, List *, List *);
 #endif

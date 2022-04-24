@@ -23,8 +23,11 @@ int main(void)
     welcomMessege();
     initDeck(&deck);
     
-    printList(&deck);
+    // TEST
+    printList(&deck);  
     printCardsInFormat(&deck);
+    // END TEST
+    
     while(play){ // Game Loop - Ends only when player wants to quit.
         // first game cycle or after resetDeck function 
         

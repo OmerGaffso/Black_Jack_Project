@@ -51,7 +51,10 @@ enum ranks{Ace = 1, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, 
 /*   ---------------------
     | Function: printBits |
      ---------------------
-        This function receives a number of type uint8_t, and prints the bit sequence of the value. 
+        $$$$$   Used in testing and debugging.  $$$$$
+        This function prints the bit sequence of the received value.
+        Parameters:
+            uint8_t - The value to print 
  */
 void printBits(uint8_t num);
 
@@ -65,7 +68,10 @@ void welcomMessege();
 /*   ---------------------
     | Function: printCash |
      ---------------------
-        Helper function to make printing cash and bet easier.
+        Helper function that prints the player cash and the bet pool.
+        Parameters:
+            unsigned int * - The player cash pool
+            unsigned int * - The bet pool
  */
 void printCash(unsigned int *, unsigned int *);
 
@@ -73,6 +79,10 @@ void printCash(unsigned int *, unsigned int *);
     | Function: getSuitName |
      -----------------------
         Helper function that receives a suit number and return its name as a string (based on suits enum).
+        Parameters:
+            enum suits - the suit number 
+        Returns:
+            char * - the suit name
  */
 char* getSuitName(enum suits);
 
@@ -80,6 +90,10 @@ char* getSuitName(enum suits);
     | Function: getRankName |
      -----------------------
         Helper function that receives a rank number and return its name as a string (based on ranks enum).
+        Parameters:
+            enum ranks - the rank number 
+        Returns:
+            char * - the rank name (or digit)
  */
 char* getRankName(enum ranks);
 
@@ -90,6 +104,10 @@ char* getRankName(enum ranks);
         In this function we use bitwise << and >>, to remove the bits that isn't relevant to the suit, meaning that the bit sequence
         returned from this function is in the format: 000000XX.
         We assume (based on the way we initiate the cards) that bits 6-7 will be 0, and bits 0-5 can be anything.
+        Parameters:
+            uint8_t - The card original value, from which we want to extract what is the value in bits 0-1
+        Returns:
+            uint8_t - The value of bits 0-1, which contains the suit value
  */
 uint8_t extractSuitBits(uint8_t);
 
@@ -100,12 +118,17 @@ uint8_t extractSuitBits(uint8_t);
         In this function we use bitwise >>, to remove the bits that isn't relevant to the rank, meaning that the bit sequence
         we received is 00XXXXXX, and the sequence that will return from this function will be in the format 0000XXXX.
         We assume (based on the way we initiate the cards) that bits 6-7 will be 0, and bits 0-5 can be anything.
+        Parameters:
+            uint8_t - The card original value, from which we want to extract what is the value in bits 2-5
+        Returns:
+            uint8_t - The value of bits 2-5, which contains the ranlk value
  */
 uint8_t extractRankBits(uint8_t);
 
 /*   ------------------------------
     | Function: printCardsInFormat |
      ------------------------------
+        $$$$$   Used in testing and debugging.  $$$$$
         Helper function that prints the cards in the list passed as argumernt in the format: <rank> of <suit>
  */
 void printCardsInFormat(List *);
@@ -120,7 +143,11 @@ void blackJack();
 /*   -------------------
     | Function: toLower |
      -------------------
-        Helper function that receives a string as a parameter and returns the string in lower case.
+        Helper function that returns a string in lower case.
+        Parameters:
+            char * - The string we want to transform to lower case
+        Returns:
+            char * - The string in lower case
  */
 char * toLower(char *);
 

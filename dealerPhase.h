@@ -13,9 +13,9 @@
 *              Defines:                  *
  ****************************************/
 
-#define MIN_DEALER_HAND_VAL 17
-#define DEALER_WIN 1
-#define DEALER_LOST 0 
+#define MIN_DEALER_HAND_VAL 17          // The dealer will stop drawing if he has 17 or more
+#define DEALER_WIN 1                    // Status code
+#define DEALER_LOST 0                   // Status code
 
 /*******************************************
 *              Prototypes:                  *
