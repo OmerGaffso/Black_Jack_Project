@@ -21,8 +21,8 @@ void initList(List *list) {
 Card *createCard(uint8_t val) { 
     Card *new_card = (Card*) malloc(sizeof(Card));
     if (new_card == NULL) {
-        printf("malloc failed\n");
-        return NULL;
+        printf("ERROR: malloc failed\n");
+        exit(1); // malloc failed, exit program
     }
     new_card -> data = val;
     new_card -> next = NULL;

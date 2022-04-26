@@ -16,9 +16,10 @@ void drawPhase(List *deckP, List *playerP, List *dealerP) {
 void drawRandomCard(List *deckP, List *handP) {
     Card* drawnCard;
     int n = generateRandom(deckP->len); // the random number generated.
-    if (deckP == NULL) 
+    if (deckP == NULL) {
         printf("ERROR: the deck is empty.");
-
+        exit(1); // problem with deck initiation
+    }
     drawnCard = removeCard(deckP, n);
     addCard(handP, drawnCard);
 }

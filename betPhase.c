@@ -2,10 +2,10 @@
 
 void betPhase(unsigned int *cash, unsigned int *pot) {
     int playerBet = 0;
-    bool flag = true;
+    bool invalidInput = true;
     int betCode;
     
-    while(flag){ // runs until the user entered valid amount
+    while(invalidInput){ // runs until the user entered valid amount
         
         printf("Place your bet: \n");
         scanf("%d", &playerBet);
@@ -15,7 +15,7 @@ void betPhase(unsigned int *cash, unsigned int *pot) {
         {
         // Invalid bets:
         case 1:
-            printf("You cannot bet larger amount than your cash.\n\n");
+            printf("You cannot bet negative number.\n\n");
             break;
         
         case 2:
@@ -27,11 +27,11 @@ void betPhase(unsigned int *cash, unsigned int *pot) {
             break;
         
         case 4:
-            printf("You cannot bet negative number.\n\n");
+            printf("You cannot bet larger amount than your cash.\n\n");            
             break;
         // Valid bet: 
         case 0:
-            flag = false;
+            invalidInput = false;
             break;
         default:
             printf("Invalid Bet.\n\n");
@@ -45,13 +45,13 @@ void betPhase(unsigned int *cash, unsigned int *pot) {
 
 int checkBet(int pBet, unsigned int *cash, unsigned int *pot) {
     // Invalid bets:
-    if(pBet > *cash) 
+    if(pBet < 0) 
         return 1;
     else if(pBet % 10 != 0)
         return 2;
     else if(*pot == 0 && pBet == 0)
         return 3;
-    else if(pBet < 0)
+    else if(pBet > *cash)
         return 4;
     // Valid Bet
     else 

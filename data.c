@@ -20,7 +20,7 @@ void welcomMessege(){
     printf("Welcome to the Black Jack table!\nI'm Omer and I'll play against you.\n");
     printf("Bets are accepted in multiples of 10.\nIf your cash drops beneath 10$, it is Game Over for you.\n");
     printf("I hope you enjoy playing against me. Good Luck!\n");
-    printf("---------------------------------------------------------------\n");
+    printf("--------------------------------------------------------\n");
     putchar('\n'); 
 }
 
@@ -98,9 +98,6 @@ void printCardsInFormat(List* handP){
     puts("");
 }
 
-void blackJack() {
-    printf("Black Jack!\n");
-}
 
 char * toLower(char *s) {
     for (char *p = s; *p; p++) 
@@ -108,18 +105,4 @@ char * toLower(char *s) {
     return s;
 }
 
-bool userEndGame() {
-    char s[MAX_NAME_LEN];
 
-    while(true) {
-        printf("Do you wish to play again? (yes/no)\n");
-        scanf(" %s", &s[0]);
-        
-        toLower(s);
-        if (strcmp(s, "yes") == 0)
-            return true;
-        else if (strcmp(s, "no") == 0)
-            return false;
-        else printf("Invalid input.\n");
-    }
-}

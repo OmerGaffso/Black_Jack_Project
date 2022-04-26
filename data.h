@@ -14,6 +14,7 @@
 /*******************************************
 *              Defines:                     *
  *******************************************/
+#define INITAIL_CASH 1000           
 #define DECKSIZE 52                 // number of cards in the deck
 #define SUITS_NUMBER 4              // number of suits in a deck of cards
 #define CARDS_IN_SUIT 13            // number of cards per suit
@@ -133,13 +134,6 @@ uint8_t extractRankBits(uint8_t);
  */
 void printCardsInFormat(List *);
 
-/*   ---------------------
-    | Function: blackJack |
-     ---------------------
-        Helper function that prints "Black Jack!\n"
- */
-void blackJack();
-
 /*   -------------------
     | Function: toLower |
      -------------------
@@ -151,14 +145,5 @@ void blackJack();
  */
 char * toLower(char *);
 
-/*   -----------------------
-    | Function: userEndGame |
-     -----------------------
-        This function prompts the player if he/she wants to end the game. The input should be yes to continue playing or no to end the game.
-        (changes the play flag in main based on user input)
-        Retrurns: 
-            true - if the user input was "yes", meaning he wants to continue playing 
-            false - if the user input was "no", meaning he wants to end the game
- */
-bool userEndGame();
+
 #endif 

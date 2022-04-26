@@ -2,7 +2,7 @@
 
 int playerDecisionPhase(List *hand, List *deck) {
     int handVal = 0;
-    char decision[MAX_NAME_LEN], ch; 
+    char decision[MAX_NAME_LEN]; 
     bool standFlag = false;
 
     handVal = calculateHandValue(hand);
@@ -23,7 +23,7 @@ int playerDecisionPhase(List *hand, List *deck) {
             handVal = calculateHandValue(hand);
             if (handVal == BLACK_JACK) // blackjack
                 return BLACK_JACK;
-            else if (handVal == 0) // bust
+            else if (handVal == BUST) // bust
                 return BUST;
             else continue; // if the hand value is not blackjack or bust, return to player decision (input)
         }
@@ -31,7 +31,7 @@ int playerDecisionPhase(List *hand, List *deck) {
             standFlag = true; // breakes the loop and returns the hand vlaue.
         }
         else {
-            printf("Invalid input.\n");
+            printf("Invalid input. <hit/stand>\n");
         }
     }
     return handVal;
@@ -46,7 +46,7 @@ int calculateHandValue(List *hand) {
 
     if (hand -> head == NULL) {
         printf("ERROR: player hand is empty.\n");
-        return -1;
+        exit(1); // hand shouldn't be empty in this stage
     }
 
     while(temp != NULL) {
@@ -62,12 +62,12 @@ int calculateHandValue(List *hand) {
         }
         else {
             cardValue = atoi(cardRank); // if atoi is successful, card value will have the matching integer (2-9).
-            if (cardValue >= 0) { // if cardValue is 0, then atoi failed for some reason.
+            if (cardValue > 0) { // if cardValue is 0, then atoi failed for some reason.
                 sum += cardValue;
             }
             else {
                 printf("ERROR: atoi was not able to convert the rank into number.\n");
-                return -1;
+                exit(1); // atoi problem
             }
         }
         royaltyFlag = false;
@@ -87,9 +87,9 @@ int calculateHandValue(List *hand) {
                     return BLACK_JACK;
                 }
             }
-            if (sum > BLACK_JACK) return 0; // subtracted aces from sum, and the sum is still greater than 21.
+            if (sum > BLACK_JACK) return BUST; // for edge cases. subtracted aces from sum, and the sum is still greater than 21. for example: we draw ace, ace, ace, king, 9.  
         }
-        else return 0; // the sum is over 21, and there is no aces at hand. 
+        else return BUST; // the sum is over 21, and there is no aces at hand. 
     }
 
     return sum; // no special cases or black jack. returns the hand value.

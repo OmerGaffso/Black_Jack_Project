@@ -13,11 +13,11 @@ int dealerDrawPhase(List *dealerHand, List *deck, int playerHandVal) {
             drawRandomCard(deck, dealerHand);
             handVal = calculateHandValue(dealerHand);
 
-            if (handVal == 0) return BUST;
+            if (handVal == BUST) return BUST;
             else if (handVal > playerHandVal && handVal <= BLACK_JACK) return DEALER_WIN;
             else if (handVal >= MIN_DEALER_HAND_VAL && handVal <= BLACK_JACK) { // if the dealer hand value is not yet greater than 17, keeps on going.      
                 if (handVal < playerHandVal) return DEALER_LOST; // dealer lost
-                else if (handVal == playerHandVal) return handVal; // tie
+                else if (handVal == playerHandVal) return TIE; // tie
             }
         }
     }
