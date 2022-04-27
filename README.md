@@ -1,15 +1,15 @@
 # Black_Jack_Project
 Final Project of C programming course, a part of the Embedded Systems path in RT Group (Israel). 
 
-# Description ||
-==============
+# Description 
 This project is a terminal based game of black jack between a human player and a computer controlled dealer.
 The deck and the player hands are implemented via linked list.
 
 The player starts the game with 1000$.
 
 The program follows the basic rules of a black jack game:
-    The player bets. In this project bets can be multiples of 10 only.
+
+    The player bets. In this project bets can be multiples of 10 only.    
     The player and dealer receive 2 cards each. The player hand is printed fully, and the dealer have one card "hidden".
     The player hand value is calculated, and the player can choose if he hit (draw another card) or stand (keep his current hand value).
     Card values:
@@ -36,8 +36,7 @@ The program follows the basic rules of a black jack game:
     
     If the player cash is less than 10, the game is over because the player cannot bet anymore.
     
-# Files/Dirs ||
-=============
+# Files/Dirs 
     makefile
     README.md
     
@@ -60,20 +59,25 @@ The program follows the basic rules of a black jack game:
     dealerPhase.h
     gameHandle.h
 
-# How To Compile And Run ||
-=========================
-Option 1:
-    open terminal at the project location and type: 
-        make
+# How To Compile And Run 
 
-    Note: Uses flags -Wall -pedantic
+Option 1:
+    
+   open terminal at the project location and type: 
+        
+    make
+
+   Note: Uses flags -Wall -pedantic
 
 Option 2:
-    in the .vscode folder youll find the files launch.json & tasks.json. You can use them to compile and run the project in vscode.
+    
+   in the .vscode folder youll find the files launch.json & tasks.json. You can use them to compile and run the project in vscode.
 
-# How To Clean .o Files and prog ||
-=================================
+# How To Clean .o Files and prog 
+
 *** only if compiled using makefile (option 1 in comiling) ***
-    open terminal at the project location and type:
-        make clean
+
+open terminal at the project location and type:
+  
+  make clean
 
