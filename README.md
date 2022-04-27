@@ -5,9 +5,6 @@ Final Project of C programming course, a part of the Embedded Systems path in RT
 ==============
 This project is a terminal based game of black jack between a human player and a computer controlled dealer.
 The deck and the player hands are implemented via linked list.
-The cards are a struct that contains:
-    card pointer - points to the next card in the deck/hand
-    uint8_t - the data of the card. Each card is a unique sequence of the 8 bits in uint8_t, where the bits 0-1 represent the suit of the card and bits 2-5 represent the rank of the card. Bits 6-7 not being used and have value of 0.
 
 The player starts the game with 1000$.
 
@@ -19,9 +16,6 @@ The program follows the basic rules of a black jack game:
         Ace - can have value of either 1 or 11
         2-9 - have their face value
         Jack, Queen and King - have value of 10
-
-        Hand calculation:
-            If the hand contains an ace, initially it has the value of 11, and if the hand total value is over 21 (and there are ace/s in hand), than we subtruct 10 from the hand value- giving the ace value of 1.
 
     If the player gets hand value of 21, he wins the pot multiplied by 2.5.
     If the player hand value is greater than 21 (bust), he loses the bet.
