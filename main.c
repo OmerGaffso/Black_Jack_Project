@@ -60,7 +60,7 @@ int main(void) {
         
         resetDeck(&deck, &playerHand, &dealerHand); // reset the deck either if the player want to continue or wishes to end the game.
     }
-    
+    printf("You chose to end the game.\nHope you enjoyed playing!\n");
     freeDeck(&deck);
 
     return 0;

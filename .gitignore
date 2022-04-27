@@ -1,6 +1,6 @@
 # ignores all files except .c and .h files
 *.o
 prog
-/.vscode
+.gitignore
 instructions
 h_file_template.txt

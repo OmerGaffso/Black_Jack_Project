@@ -57,7 +57,7 @@ int calculateHandValue(List *hand) {
             sum += ACE_VALUE;
             aceCnt++;
         }
-        else if (royaltyFlag = isRoyalty(cardRank)) { // checks if rank is king/queen/jack. if so, adds 10 to the sum. flag reset on the end of the loop.
+        else if ((royaltyFlag = isRoyalty(cardRank))) { // checks if rank is king/queen/jack. if so, adds 10 to the sum. flag reset on the end of the loop.
             sum += ROYALTY_VALUE;
         }
         else {
