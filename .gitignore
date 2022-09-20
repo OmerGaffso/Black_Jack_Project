@@ -4,4 +4,4 @@ prog
 .gitignore
 instructions
 h_file_template.txt
-.vscode
+/.vscode
