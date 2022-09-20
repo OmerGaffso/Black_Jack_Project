@@ -1,35 +1,24 @@
 #include "data.h"
 
 void printBits(uint8_t num) {
-    int x = 0;
 
     for (uint8_t mask = 1<<7; mask != 0; mask >>= 1) {
         putchar( (num & mask)  ? '1' : '0');
-        if (x == 7) {
-            putchar(' ');
-            x = 0;
-        }
-        else {
-            x++;
-        }
     }
     puts("");
 }
 
-void welcomMessege(){
+void welcomMessege(void){
     printf("Welcome to the Black Jack table!\nI'm Omer and I'll play against you.\n");
-    printf("Bets are accepted in multiples of 10.\nIf your cash drops beneath 10$, it is Game Over for you.\n");
+    printf("Bets are accepted in multiples of %d.\n",MIN_BET);
+    printf("If your cash drops beneath %d$, it is Game Over for you.\n",MIN_BET);
     printf("I hope you enjoy playing against me. Good Luck!\n");
     printf("--------------------------------------------------------\n");
     putchar('\n'); 
 }
 
-void printCash(unsigned int *cash, unsigned int *pot){
-    printf("Your cash: %u$\tCurrent bet: %u$\n",*cash, *pot);
-}
-
-char* getSuitName(enum suits Suit) {
-    switch (Suit) {
+char* getSuitName(Suit suit) {
+    switch (suit) {
     case Diamonds:   return "Diamonds";
     case Clubs:      return "Clubs";
     case Hearts:     return "Hearts";
@@ -41,8 +30,8 @@ char* getSuitName(enum suits Suit) {
     }
 }
 
-char* getRankName(enum ranks Rank) {
-    switch (Rank) {
+char* getRankName(Rank rank) {
+    switch (rank) {
     case Ace:    return "Ace";
     case Two:    return "2";
     case Three:  return "3";
@@ -64,22 +53,28 @@ char* getRankName(enum ranks Rank) {
 }
 
 uint8_t extractSuitBits(uint8_t cardData) {
-    /* Moves the card bits 6 places left (to delete the rank bits) and than 6 places right to leave only the suit bits to be translated*/
+    /* 
+    Moves the card bits 6 places left (to delete the rank bits) and than 6 places right 
+    to leave only the suit bits to be translated
+    */
     cardData <<= RANK_BITS;
     cardData >>= RANK_BITS;
     return cardData; 
 }
 
 uint8_t extractRankBits(uint8_t cardData) {
-    /* Moves the card bits 2 places right to delete the suit bits so the rank bits are on the least segnificant bits (0-3) location to be translated */
+    /* 
+    Moves the card bits 2 places right to delete the suit bits so the rank bits
+    are on the least segnificant bits (0-3) location to be translated 
+    */
     cardData >>= SUIT_BITS;
     return cardData;
 }
 
 
-void printCardsInFormat(List* handP){
+void printCards(List* handP){
     Card *temp;
-    char *cardSuit, *cardRank;
+    const char *cardSuit, *cardRank;
     uint8_t cardData;
 
     temp = handP -> head;
@@ -88,7 +83,6 @@ void printCardsInFormat(List* handP){
 
         cardData = extractSuitBits(temp -> data);
         cardSuit = getSuitName(cardData);
-        strcat(cardSuit, "\0");
          
         cardData = extractRankBits(temp -> data);
         cardRank = getRankName(cardData);

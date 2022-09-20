@@ -1,5 +1,15 @@
 #ifndef LISTS_H
 #define LISTS_H
+
+/*******************************************
+*            File Description:              *
+ *******************************************/
+/*
+    This file contains the lists functions - initiating them, 
+    creating new cards, removing cards from the hands, adding cards to the hands,
+    and freeing the memory allocated to the cards and lists.
+*/
+
 /*******************************************
 *              Includes:                    *
  *******************************************/
@@ -16,7 +26,7 @@
         parameters:
             List * - The list head pointer to be printed.
  */
-void printList(List *);
+void printList(List *list);
 
 /*   ---------------------
     | Function: initDeck |
@@ -38,30 +48,32 @@ void printList(List *);
         parameters:
             List * - the list head pointer that will be the deck. the cards that will be created will be added to this list.  
  */
-void initDeck(List *);
+void initDeck(List *deck);
 
-/*   ---------------------
-    | Function: removeCard |
-     ---------------------
-        This function removes a card from position, and returns the card (used for drawing a card from the deck).
+/*   --------------------------------
+    | Function: removeCardByPosition |
+     --------------------------------
+        This function removes a card from position, and returns the card 
+        (used for drawing a card from the deck).
         Parameters:
             List * - Pointer to the list the card will be removed from
             int - The index of the card to remove
         Returns:
             Card * - The card that has been removed
  */
-Card*removeCard(List *, int);
+Card* removeCardByPosition(List *list, int pos);
 
 /*   ------------------------------
-    | Function: removeCardFromHand |
+    | Function: removeTopCard |
      ------------------------------
-        This function removes the first card from the passed List, and returns the card (used for reseting the hands).
+        This function removes the first card from the passed List, 
+        and returns the card (used for reseting the hands).
         Parameters:
             List * - Pointer to the list from which to remove the card
         Returns:
             Card * - The card that was removed
  */
-Card*removeCardFromHand(List *); 
+Card*removeTopCard(List *list); 
 
 /*   ---------------------
     | Function: createCard |
@@ -72,24 +84,24 @@ Card*removeCardFromHand(List *);
         Returns:
             Card * - The card that was created
  */
-Card* createCard(uint8_t);
+Card* createCard(uint8_t val);
 
 /*   ---------------------
     | Function: freeDeck  |
      ---------------------
         This function frees the memory used in the deck linked list.
  */
-void freeDeck(List *);
+void freeDeck(List *deck);
 
-/*   ---------------------
-    | Function: addCard  |
-     ---------------------
+/*   -----------------------
+    | Function: addTopCard  |
+     -----------------------
         This function receives a card and a list, and pushes the card to the start of the given list.
         Parameters:
             List * - The list to add the card to
             Card * - The card to add to the given list
  */
-void addCard(List*, Card*);
+void addTopCard(List *list, Card *card);
 
 /*   ---------------------
     | Function: initList  |
@@ -104,13 +116,14 @@ void initList(List *list);
     | Function: resetDeck  |
      ----------------------
         This function returns all of the drawn cards to the deck. 
-        Used at the end of the game loop in preparation to initiate a new game or for freeing the malloced cards.
+        Used at the end of the game loop in preparation to initiate a new game or in preparation to
+        free the memory allocated to the cards.
         Parameters:
             List * - The deck
             List * - The player hand
             List * - The dealer hand
  */
-void resetDeck(List *, List *, List *);
+void resetDeck(List *deck, List *playerHand, List *dealerHand);
 #endif
 
 

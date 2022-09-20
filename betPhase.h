@@ -2,10 +2,25 @@
 #define BETPHASE_H
 
 /*******************************************
+*            File Description:              *
+ *******************************************/
+/*
+    This file contains the functions and definitions used by the program
+    to check the validity of the player bet and return error messages based
+    on each case.
+*/
+
+/*******************************************
 *              Includes:                    *
  *******************************************/
 #include "data.h"
 
+
+/*******************************************
+*              Definitions:                 *
+ *******************************************/
+typedef enum BetError { VALID_BET, BETERROR_NEGATIVE, BETERROR_NOT_IN_TENS, 
+                        BETERROR_ZERO_BET, BETERROR_NOT_ENOUGH_CASH} BetError; 
 
 /*******************************************
 *              Prototypes:                  *
@@ -20,7 +35,7 @@
             unsigned int * - the player cash pool to substract the bet from
             unsigned int * - the pot pool to add the bet into 
  */
-void betPhase(unsigned int *, unsigned int *);
+void betPhase(unsigned int *cash, unsigned int *pot);
 
 /*   --------------------
     | Function: checkBet |
@@ -38,6 +53,6 @@ void betPhase(unsigned int *, unsigned int *);
             3 = player bet 0, when the pot is non-zero.
             4 = player bet was negative number.
  */
-int checkBet(int, unsigned int *, unsigned int *);
+int checkBet(int pBet, int cash, int pot);
 
 #endif

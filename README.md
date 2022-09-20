@@ -59,6 +59,23 @@ The program follows the basic rules of a black jack game:
     dealerPhase.h
     gameHandle.h
 
+File relationships and depndencies:
+        ______data______________________
+        \                \              \
+        lists          betPhase      gameHandle   
+            \              
+            drawPhase
+                \
+                playersPhase
+
+main: the controle of the game. from this file we call the primary phases of the game.
+data: contains needed definitions and helper functions for the rest of the game files.
+lists: contains the list functions for the deck, player hand and dealer hand.
+betPhase: contains the logic and validation for the player bet.
+drawPhase: contains the functions for the draw phase of the game.
+playersPhase: contains the functions and logic of the player and dealer behaviour.
+gameHandle: determines the game ending behaviour based on the game result and user input.
+
 # How To Compile And Run 
 
 Option 1:
@@ -75,7 +92,7 @@ Option 2:
 
 # How To Clean .o Files and prog 
 
-*** only if compiled using makefile (option 1 in comiling) ***
+*** only if compiled using makefile (option 1 in compiling) ***
 
 open terminal at the project location and type:
   

@@ -2,11 +2,9 @@
 #include "lists.h"
 #include "betPhase.h"
 #include "drawPhase.h"
-#include "playerDecision.h"
-#include "dealerPhase.h"
+#include "playersPhase.h"
 #include "gameHandle.h"
 
-void freeMemory(List *, List *, List *);
 
 int main(void) {
     unsigned int cash, pot, playerBet;
@@ -18,6 +16,8 @@ int main(void) {
     cash = INITAIL_CASH;
     pot = 0;
     play = true;
+
+    srand(time(NULL)); // sets the seed for the random number generator
     
     initList(&playerHand);
     initList(&dealerHand);
@@ -28,39 +28,39 @@ int main(void) {
     while(play) { // Game Loop - Ends only when player wants to quit.
         // first game cycle or after resetDeck function 
 
-        printCash(&cash, &pot);
+        printf("Your cash: %u$\tCurrent bet: %u$\n",cash, pot);
         betPhase(&cash, &pot);
-        drawPhase(&deck, &playerHand, &dealerHand);
+        initialDrawPhase(&deck, &playerHand, &dealerHand);
         playerHandValue = playerDecisionPhase(&playerHand, &deck);
             
-        if (playerHandValue == BLACK_JACK) blackJack(&cash, &pot, &playerBet, &play);    
-        else if (playerHandValue == BUST) playerBust(&cash, &pot, &playerBet, &play);    
+        if (playerHandValue == BLACK_JACK) blackJack(&cash, &pot, &playerBet);    
+        else if (playerHandValue == BUST) playerBust(&cash, &pot, &playerBet);    
         else {
            dealerPhaseCode = dealerDrawPhase(&dealerHand, &deck, playerHandValue);
 
             switch (dealerPhaseCode) {
             
-            case DEALER_WIN:
-                dealerWin(&cash, &pot, &playerBet, &play);
+            case DEALER_RESULT_WIN:
+                dealerWin(&cash, &pot, &playerBet);
                 break;
             
-            case BUST:
-                dealerBust(&cash, &pot, &playerBet, &play);
+            case DEALER_RESULT_BUST:
+                dealerBust(&cash, &pot, &playerBet);
                 break;
             
-            case DEALER_LOST:
-                playerWon(&cash, &pot, &playerBet, &play);
+            case DEALER_RESULT_LOST:
+                playerWon(&cash, &pot, &playerBet);
                 break;
             
-            case TIE:
-                tie(&playerBet, &play);
+            case DEALER_RESULT_TIE:
+                tie(&playerBet);
                 break;
             }
         }
-        
-        resetDeck(&deck, &playerHand, &dealerHand); // reset the deck either if the player want to continue or wishes to end the game.
+        play = userEndGame(cash, pot);
+        resetDeck(&deck, &playerHand, &dealerHand); 
+        // reset the deck either if the player want to continue or wishes to end the game.
     }
-    printf("You chose to end the game.\nHope you enjoyed playing!\n");
     freeDeck(&deck);
 
     return 0;

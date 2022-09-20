@@ -8,7 +8,7 @@ void initDeck(List *deck) {
 
     for (size_t i = 1; i <= DECKSIZE; i++){
         newCard = createCard(value);
-        addCard(deck, newCard);
+        addTopCard(deck, newCard);
         value++;
     }    
 }
@@ -55,35 +55,27 @@ void freeDeck(List *deck) {
     }
 }
 
-Card *removeCard(List *list, int pos) {
-    Card *temp, *current;
-    current = list -> head;
-    if (pos == 1) {
-        list -> head = current -> next ;
-        current -> next = NULL;
-        list -> len--;
-        return current;
+Card *removeCardByPosition(List *list, int pos) {
+    Card *prev = NULL;
+    Card *curr = list->head;
+    
+    while(pos--) { // sets curr to the card at pos, and prev to the card at pos - 1
+        prev = curr;
+        curr = curr -> next;
     }
-    else if (pos == list -> len) {
-        for (size_t i = 1; i < list ->len - 1; i++)
-            current = current -> next; // current is now card number 51.
-        temp = current -> next; // set temp to last card
-        current -> next = NULL; // set the 51th card in the deck as the last card.
-        list -> len --;
-        return temp;
-    }
-    else {
-        for (size_t i = 1; i != pos - 1; i++)
-            current = current -> next; // sets current to (n - 1) card.
-        temp = current -> next; // sets temp as the n card.
-        current -> next = temp -> next; // removes the nth card from the list.
-        temp -> next = NULL; // sets the nth card as standalone card.
-        list -> len --;
-        return temp;
-    }
+
+    if (prev) 
+        prev -> next = curr -> next; // prev != NULL, so pos is between 1 and list length - 1.
+    else 
+        list -> head = curr -> next; 
+        // prev == NULL, meaning pos == 0. moves the list head to the card at pos 1.
+
+    list -> len -- ;
+    curr -> next = NULL;
+    return curr;
 }
 
-void addCard(List *list, Card *card) {
+void addTopCard(List *list, Card *card) {
     card -> next = list -> head;
     list -> head = card;
     list -> len++;
@@ -93,17 +85,17 @@ void resetDeck(List *deck, List *playerHand, List *dealerHand) {
     Card *temp;
 
     while (playerHand -> head != NULL) {
-        temp = removeCardFromHand(playerHand);
-        addCard(deck, temp);
+        temp = removeTopCard(playerHand);
+        addTopCard(deck, temp);
     }
 
     while (dealerHand -> head != NULL) {
-        temp = removeCardFromHand(dealerHand);
-        addCard(deck, temp);
+        temp = removeTopCard(dealerHand);
+        addTopCard(deck, temp);
     }
 }
 
-Card*removeCardFromHand(List *list) {
+Card*removeTopCard(List *list) {
     Card *current = list -> head;
     if (current == NULL) return NULL;
     list -> head = current -> next;
