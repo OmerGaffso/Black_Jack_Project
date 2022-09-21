@@ -20,7 +20,7 @@ int playerDecisionPhase(List *hand, List *deck) {
         
         if (strcmp(decision, "hit") == 0) { // draw a new card and calaculate the new hand value.
             drawRandomCard(deck, hand);
-            printHand(hand, 'p');
+            printHand(hand, true, true);
             handVal = calculateHandValue(hand);
             if (handVal == BLACK_JACK) 
                 return BLACK_JACK;
@@ -101,21 +101,23 @@ void printHandValue(int handVal, bool isPlayer) {
     }
 }
 
-int dealerDrawPhase(List *dealerHand, List *deck, int playerHandVal) {
-    int handVal = 0;
-
-    handVal = calculateHandValue(dealerHand); 
+int dealerDrawPhase(List *dealerHand, List *deck, int dealerHandVal, int playerHandVal) {
+    
     // in this stage there is no need to check for bust, because the dealers
     // hand contains only two cards.
 
-    while (handVal < MIN_DEALER_HAND_VAL && handVal <= playerHandVal) {
+    while (dealerHandVal < MIN_DEALER_HAND_VAL && dealerHandVal <= playerHandVal) {
         drawRandomCard(deck, dealerHand);
-        handVal = calculateHandValue(dealerHand);
+        dealerHandVal = calculateHandValue(dealerHand);
 
-        if (handVal == BUST) return DEALER_RESULT_BUST;
+        if (dealerHandVal == BUST) {
+            printHand(dealerHand, false, true);
+            return DEALER_RESULT_BUST;
+        }
     }
-    printHandValue(handVal, false);
-    if (handVal > playerHandVal) return DEALER_RESULT_WIN;
-    else if (handVal < playerHandVal) return DEALER_RESULT_LOST;
+    printHand(dealerHand, false, true);
+    printHandValue(dealerHandVal, false);
+    if (dealerHandVal > playerHandVal) return DEALER_RESULT_WIN;
+    else if (dealerHandVal < playerHandVal) return DEALER_RESULT_LOST;
     else return DEALER_RESULT_TIE;
 }

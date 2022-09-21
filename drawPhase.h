@@ -53,9 +53,10 @@ void drawRandomCard(List *deckP, List *handP);
                                         dealer: <rank> of <suit>,\t ???? ????
         Parameters:
             List * - Pointer to the list that will be printed
-            char - 'p' or 'd', that indicates if the hand is the player's or the dealer's
+            bool - true indicates that the hand is the player's, false is the dealer's hand
+            bool - used for showing dealer hand after the player played.
  */
-void printHand(List* handP, char handCode);
+void printHand(List* handP, bool isPlayer, bool showHand);
 
 /*   --------------------------
     | Function: generateRandom |

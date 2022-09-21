@@ -100,6 +100,6 @@ void printHandValue(int handVal, bool isPlayer);
             return 2 (DEALER_STATUS_TIE)-   dealer draw till his hand value is greater than 17 and less 
                                             than 21, and his hand value is equal to the player hand value
  */
-int dealerDrawPhase(List *dealerHand, List *deck, int playerHandVal);
+int dealerDrawPhase(List *dealerHand, List *deck, int dealerHandVal, int playerHandVal);
 
 #endif

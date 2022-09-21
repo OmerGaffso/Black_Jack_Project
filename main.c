@@ -12,7 +12,7 @@ int main(void) {
     List deck; 
     List playerHand; 
     List dealerHand;
-    int playerHandValue, dealerPhaseCode;
+    int playerHandValue, dealerHandValue, dealerPhaseCode;
     cash = INITAIL_CASH;
     pot = 0;
     play = true;
@@ -26,17 +26,28 @@ int main(void) {
     initDeck(&deck);
 
     while(play) { // Game Loop - Ends only when player wants to quit.
-        // first game cycle or after resetDeck function 
 
         printf("Your cash: %u$\tCurrent bet: %u$\n",cash, pot);
         betPhase(&cash, &pot);
         initialDrawPhase(&deck, &playerHand, &dealerHand);
-        playerHandValue = playerDecisionPhase(&playerHand, &deck);
-            
-        if (playerHandValue == BLACK_JACK) blackJack(&cash, &pot, &playerBet);    
+
+        playerHandValue = playerDecisionPhase(&playerHand, &deck);  
+        // initial hand value of the dealers hand to check for natural 21 value
+        dealerHandValue = calculateHandValue(&dealerHand); 
+      
+        if (playerHandValue == BLACK_JACK) {
+            if (dealerHandValue == BLACK_JACK) {
+                printHand(&dealerHand, false, true); 
+                printf("Dealer has natural value of %d\n",BLACK_JACK);
+                tie(&playerBet);
+            }
+            else {
+                blackJack(&cash, &pot, &playerBet);
+            }
+        }    
         else if (playerHandValue == BUST) playerBust(&cash, &pot, &playerBet);    
         else {
-           dealerPhaseCode = dealerDrawPhase(&dealerHand, &deck, playerHandValue);
+            dealerPhaseCode = dealerDrawPhase(&dealerHand, &deck, dealerHandValue, playerHandValue);
 
             switch (dealerPhaseCode) {
             
@@ -60,6 +71,7 @@ int main(void) {
         play = userEndGame(cash, pot);
         resetDeck(&deck, &playerHand, &dealerHand); 
         // reset the deck either if the player want to continue or wishes to end the game.
+        printf("--------------------------------------------------------\n");
     }
     freeDeck(&deck);
 

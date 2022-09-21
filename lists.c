@@ -58,7 +58,7 @@ void freeDeck(List *deck) {
 Card *removeCardByPosition(List *list, int pos) {
     Card *prev = NULL;
     Card *curr = list->head;
-    
+
     while(pos--) { // sets curr to the card at pos, and prev to the card at pos - 1
         prev = curr;
         curr = curr -> next;
@@ -97,7 +97,7 @@ void resetDeck(List *deck, List *playerHand, List *dealerHand) {
 
 Card*removeTopCard(List *list) {
     Card *current = list -> head;
-    if (current == NULL) return NULL;
+    if (current == NULL) return NULL; // in case of user change that makes a mistake and sends empty list.
     list -> head = current -> next;
     current -> next = NULL;
     list -> len--;
